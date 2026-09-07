@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="给中文初学者的互动韩语字母与拼读练习。" />
+    <title>韩语字母起步站</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!--
+      THESIS: 把字母学习变成一页能写、能贴、能开口练的温暖学习手账，拒绝冷硬课程面板。
+      OWN-WORLD: 米色纸张、低饱和便签、半透明胶带、铅笔线和少量手写批注共同组织内容。
+      STORY: 学习者认识字母，拼出音节，开口跟读，完成短测并保留自己的学习痕迹。
+      FIRST VIEWPORT: 顶部是纸页标题与进度，右侧为贴着胶带的实时音节便签，下面接入两组字母。
+      FORM: 学习手账工作页；种子 6116353b 的信息密度保留为清晰的可操作字母台。
+    -->
+    <a class="skip-link" href="#lesson">跳到学习内容</a>
+
+    <header class="site-header">
+      <div class="brand" aria-label="韩语字母起步站">
+        <span class="brand-mark" aria-hidden="true">ㅎ</span>
+        <span>韩语字母起步站</span>
+      </div>
+      <div class="header-progress" aria-label="学习进度">
+        <span class="signal-dot" aria-hidden="true"></span>
+        <span id="header-progress">已学 0 / 16</span>
+      </div>
+    </header>
+
+    <main id="lesson">
+      <section class="intro-spread" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <h1 id="page-title">先把一块韩文<br />拼出来。</h1>
+          <p>
+            韩文不是按一条线写的字母串。一个基本音节块通常由<strong>辅音 + 元音</strong>组成，例如
+            <span lang="ko">ㄱ + ㅏ = 가</span>。先选两张字母便签，看它们在这里拼成一个完整音节。
+          </p>
+          <p class="hand-note">不用急着像中文拼音那样读准，先看见它们如何合在一起。</p>
+          <a class="text-link" href="#letters">先认识字母 <span aria-hidden="true">↓</span></a>
+        </div>
+
+        <section class="syllable-note" aria-labelledby="builder-title">
+          <div class="note-title-row">
+            <h2 id="builder-title">拼读小桌</h2>
+            <p id="selection-status" aria-live="polite">已选：ㄱ 与 ㅏ</p>
+          </div>
+          <div class="syllable-sheet" aria-label="当前组合音节">
+            <div class="syllable-cell syllable-main">
+              <span class="sheet-label">音节块</span>
+              <output id="syllable" lang="ko">가</output>
+            </div>
+            <div class="syllable-cell">
+              <span class="sheet-label">罗马音</span>
+              <output id="romanization">ga</output>
+            </div>
+          </div>
+          <p class="pronunciation-note" id="pronunciation-tip">
+            <strong>中文提示：</strong>接近“嘎”的起音，但不是完全相同。
+          </p>
+          <div class="selector-grid">
+            <fieldset class="selector-field">
+              <legend>起首辅音</legend>
+              <div id="consonant-selector" class="selector-options"></div>
+            </fieldset>
+            <fieldset class="selector-field">
+              <legend>元音</legend>
+              <div id="vowel-selector" class="selector-options"></div>
+            </fieldset>
+          </div>
+        </section>
+      </section>
+
+      <section class="learning-section" id="letters" aria-labelledby="letters-title">
+        <div class="section-heading">
+          <div>
+            <h2 id="letters-title">认字母，不急着背。</h2>
+            <p>点击字母便签记为“已学会”。中文提示只是找感觉，不等于完全相同的中文音。</p>
+          </div>
+          <div class="progress-panel">
+            <span id="progress-count">0 / 16</span>
+            <progress id="learning-progress" value="0" max="16">0%</progress>
+            <button class="quiet-button" id="reset-progress" type="button">重置学习进度</button>
+          </div>
+        </div>
+
+        <div class="letter-groups">
+          <section aria-labelledby="consonants-title">
+            <h3 id="consonants-title">核心辅音</h3>
+            <div class="letter-grid" id="consonant-cards"></div>
+          </section>
+          <section aria-labelledby="vowels-title">
+            <h3 id="vowels-title">核心元音</h3>
+            <div class="letter-grid vowel-grid" id="vowel-cards"></div>
+          </section>
+        </div>
+        <p class="screen-reader-status" id="progress-status" aria-live="polite"></p>
+      </section>
+
+      <section class="practice-section" aria-labelledby="practice-title">
+        <div class="practice-lead">
+          <h2 id="practice-title">开口跟一遍。</h2>
+          <p>说出眼前的字或音节。浏览器只会把这一次识别结果显示在当前页面，不会保存或上传你的音频与文字。</p>
+          <p class="hand-note">识别是宽松提示，不是发音评分。安静地多试几次就好。</p>
+        </div>
+        <section class="practice-note" aria-labelledby="practice-target-label">
+          <div class="practice-target">
+            <span id="practice-target-label">这次跟读</span>
+            <output id="practice-target" lang="ko">가</output>
+            <span id="practice-guide">慢慢读：ga</span>
+          </div>
+          <div class="practice-controls">
+            <button class="quiet-button" id="play-pronunciation" type="button">听一听</button>
+            <button class="primary-button" id="start-listening" type="button" aria-label="开始韩语跟读检测">开始跟读</button>
+            <button class="quiet-button" id="stop-listening" type="button" disabled>停止</button>
+            <button class="quiet-button" id="retry-listening" type="button" disabled>再试一次</button>
+            <button class="quiet-button" id="new-practice" type="button">换一个练习</button>
+          </div>
+          <p class="speech-support" id="speech-support">正在检查浏览器的语音识别支持情况…</p>
+          <p class="speech-synthesis-status" id="speech-synthesis-status">正在检查韩语朗读支持情况…</p>
+          <p class="speech-result"><strong>识别到：</strong><span id="speech-result">还没有文字</span></p>
+          <p class="speech-feedback" id="speech-feedback" aria-live="polite"></p>
+          <p class="practice-alternative">不想用语音？看着 <span id="practice-alternative-target" lang="ko">가</span>，默读三遍，再回到拼读小桌组合新的音节。</p>
+        </section>
+      </section>
+
+      <section class="quiz-section" aria-labelledby="quiz-title">
+        <div class="quiz-lead">
+          <h2 id="quiz-title">随手小测</h2>
+          <p>五题一轮。答完马上知道原因；错题不扣你的学习热情。</p>
+          <div class="scoreboard" aria-live="polite">
+            <span>题目 <strong id="question-number">1 / 5</strong></span>
+            <span>得分 <strong id="score">0</strong></span>
+          </div>
+        </div>
+        <section class="quiz-note" aria-labelledby="question">
+          <p class="question-label">当前便签</p>
+          <h3 id="question">正在准备题目…</h3>
+          <div class="quiz-options" id="quiz-options"></div>
+          <p class="quiz-feedback" id="quiz-feedback" aria-live="polite"></p>
+          <div class="quiz-actions">
+            <button class="primary-button" id="next-question" type="button" disabled>下一题</button>
+            <button class="quiet-button" id="restart-quiz" type="button">重新出题</button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer>
+      <span lang="ko">한 글자씩, 한 칸씩.</span>
+      <span>一次一格，慢慢就会读。</span>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>
