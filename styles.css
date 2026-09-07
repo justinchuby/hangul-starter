@@ -472,6 +472,76 @@ progress {
   margin: 1rem 0 0;
 }
 
+.memory-section {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.memory-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.memory-heading h3 {
+  margin: 0;
+}
+
+.memory-heading p {
+  margin: 0;
+  color: #594934;
+  font-family: "KaiTi", "STKaiti", cursive;
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.memory-note {
+  display: grid;
+  grid-template-columns: 4.7rem minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: center;
+  padding: 0.7rem;
+  background: #fffaf0;
+  border: 1px solid #d7c5a4;
+  box-shadow: 3px 3px 0 rgba(62, 52, 43, 0.12);
+}
+
+.memory-note:nth-child(3n + 2) {
+  background: #f5e5c4;
+  transform: rotate(0.6deg);
+}
+
+.memory-note svg {
+  width: 100%;
+  height: auto;
+  stroke: #87580f;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.memory-note strong {
+  display: block;
+  color: #286144;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.memory-note p {
+  margin: 0.3rem 0 0;
+  color: #564635;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
 .practice-section,
 .quiz-section {
   display: grid;
@@ -687,6 +757,10 @@ footer {
     gap: 3.5rem;
   }
 
+  .memory-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .letter-grid {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
@@ -725,8 +799,16 @@ footer {
     align-items: start;
   }
 
+  .memory-heading {
+    display: grid;
+  }
+
+  .memory-note {
+    grid-template-columns: 4rem minmax(0, 1fr);
+  }
+
   .letter-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .letter-card {

@@ -34,7 +34,7 @@
           <h1 id="page-title">先把一块韩文<br />拼出来。</h1>
           <p>
             韩文不是按一条线写的字母串。一个基本音节块通常由<strong>辅音 + 元音</strong>组成，例如
-            <span lang="ko">ㄱ + ㅏ = 가</span>。先选两张字母便签，看它们在这里拼成一个完整音节。
+            <span lang="ko">ㄱ + ㅏ = 가</span>。这一页是第一课：先认识 19 个起首辅音和 6 个基础元音，再看它们拼成一个完整音节。
           </p>
           <p class="hand-note">不用急着像中文拼音那样读准，先看见它们如何合在一起。</p>
           <a class="text-link" href="#letters">先认识字母 <span aria-hidden="true">↓</span></a>
@@ -95,6 +95,69 @@
           </section>
         </div>
         <p class="screen-reader-status" id="progress-status" aria-live="polite"></p>
+
+        <section class="memory-section" aria-labelledby="memory-title">
+          <div class="memory-heading">
+            <h3 id="memory-title">字形小贴士</h3>
+            <p>这些是记字形的小联想，不是标准发音规则。</p>
+          </div>
+          <div class="memory-grid">
+            <article class="memory-note">
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false">
+                <path d="M25 58 60 17l35 41M55 52q8 8 16 0" />
+              </svg>
+              <div><strong lang="ko">ㅅ</strong><p>像小蛇抬起舌尖，也像一座尖尖的小山。</p></div>
+            </article>
+            <article class="memory-note">
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false">
+                <rect x="35" y="12" width="50" height="25" rx="2" /><rect x="35" y="42" width="50" height="25" rx="2" />
+              </svg>
+              <div><strong lang="ko">ㅂ</strong><p>像两只叠在一起的小杯子，或两格小盒。</p></div>
+            </article>
+            <article class="memory-note">
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false">
+                <path d="M40 18v44h42M41 18c21 0 34 10 35 27" /><circle cx="78" cy="35" r="2" />
+              </svg>
+              <div><strong lang="ko">ㄴ</strong><p>像侧过来的小鼻子，也可联想 Nose 的 N。</p></div>
+            </article>
+            <article class="memory-note">
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false">
+                <rect x="35" y="15" width="50" height="50" rx="1" /><path d="M60 15v50M35 40h50" />
+              </svg>
+              <div><strong lang="ko">ㅁ</strong><p>像一扇方方的小窗，也像张开的小口。</p></div>
+            </article>
+            <article class="memory-note">
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false">
+                <circle cx="60" cy="40" r="24" /><circle cx="48" cy="33" r="2" /><circle cx="72" cy="33" r="2" />
+              </svg>
+              <div><strong lang="ko">ㅇ</strong><p>像安静冒出的圆气泡；开头时也安静不发音。</p></div>
+            </article>
+            <article class="memory-note">
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false">
+                <path d="M32 25h56M60 25v16M34 45h52M60 45v20" /><path d="M48 64q12 10 24 0" />
+              </svg>
+              <div><strong lang="ko">ㅎ</strong><p>像戴着横线小帽、露出笑意的小脸。</p></div>
+            </article>
+            <article class="memory-note">
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false">
+                <path d="M36 18v45h49" /><path d="m81 62-9-8m9 8-9 8" />
+              </svg>
+              <div><strong lang="ko">ㄱ</strong><p>像走到直角处要转弯的小路。</p></div>
+            </article>
+            <article class="memory-note">
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false">
+                <path d="M30 18h45v15H44v15h31v15H30" /><path d="m79 17 9 7-9 7" />
+              </svg>
+              <div><strong lang="ko">ㄹ</strong><p>像一条折来折去、慢慢往前的小路。</p></div>
+            </article>
+            <article class="memory-note">
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false">
+                <path d="M31 23h58M60 23v13M40 43h40M60 43v21" /><path d="M37 18q23-12 46 0" />
+              </svg>
+              <div><strong lang="ko">ㅈ</strong><p>像帽檐下撑起的一副小支架。</p></div>
+            </article>
+          </div>
+        </section>
       </section>
 
       <section class="practice-section" aria-labelledby="practice-title">
@@ -116,8 +179,8 @@
             <button class="quiet-button" id="retry-listening" type="button" disabled>再试一次</button>
             <button class="quiet-button" id="new-practice" type="button">换一个练习</button>
           </div>
-          <p class="speech-support" id="speech-support">正在检查浏览器的语音识别支持情况…</p>
-          <p class="speech-synthesis-status" id="speech-synthesis-status">正在检查韩语朗读支持情况…</p>
+          <p class="speech-support" id="speech-support" role="status">正在检查浏览器的语音识别支持情况…</p>
+          <p class="speech-synthesis-status" id="speech-synthesis-status" role="status">正在检查韩语朗读支持情况…</p>
           <p class="speech-result"><strong>识别到：</strong><span id="speech-result">还没有文字</span></p>
           <p class="speech-feedback" id="speech-feedback" aria-live="polite"></p>
           <p class="practice-alternative">不想用语音？看着 <span id="practice-alternative-target" lang="ko">가</span>，默读三遍，再回到拼读小桌组合新的音节。</p>

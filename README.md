@@ -4,7 +4,7 @@
 
 ## 本地运行
 
-直接用浏览器打开 `index.html` 即可使用。若希望通过本地服务器预览：
+字母学习内容可直接打开 `index.html`。不过，浏览器通常只会在 **HTTPS 或 `http://localhost`** 安全上下文中允许麦克风访问，因此要使用跟读检测，请通过本地服务器预览：
 
 ```bash
 python3 -m http.server 8000
@@ -19,6 +19,8 @@ python3 -m http.server 8000
 ## 功能
 
 - 核心辅音、元音学习卡；点击即可标记“已学会”
+- 第一课覆盖现代韩语全部 19 个初声和 6 个基础元音；双写辅音以“紧音”说明，不按普通重复读处理
+- 原创内联字形小贴士，以手账线条插画和中文短句帮助记住常见字形；仅作形状联想，不表示标准发音规则
 - 选择辅音和元音，即时生成真实的韩文音节块、罗马音和中文近似提示
 - 浏览器内的韩语跟读检测：显示基础音节，使用 Web Speech API 的 `ko-KR` 识别作宽松匹配，并提供不使用语音的替代练习
 - 五题随机小测，逐题反馈和计分
@@ -29,4 +31,8 @@ python3 -m http.server 8000
 
 跟读检测只会在浏览器支持 `SpeechRecognition` 或 `webkitSpeechRecognition` 时启用。点击“开始跟读”后，浏览器会请求麦克风权限，并将本次识别文字显示在当前页面中；本站不会保存、上传或持久化音频或识别文字。
 
-不同浏览器、设备和网络对 Web Speech API 的支持不同，识别结果也不是绝对准确。若 API 不可用、麦克风被拒、网络异常或没有检测到声音，页面会给出明确说明，并始终提供默读替代练习。
+不同浏览器、设备和网络对 Web Speech API 的支持不同；语音识别还可能依赖浏览器提供的在线服务，识别结果也不是绝对准确。若 API 不可用、页面不是 HTTPS/localhost、麦克风被拒、网络异常或没有检测到声音，页面会给出明确说明，并始终提供“听一听”和默读替代练习。
+
+## GitHub Pages
+
+仓库已包含 GitHub Actions 工作流。推送到 `justinchuby-hangul-learning-page` 分支会将仓库根目录的静态文件部署到 GitHub Pages；也可在 Actions 页面手动运行 **Deploy GitHub Pages**。预期访问地址为 <https://justinchuby.github.io/hangul-starter/>。

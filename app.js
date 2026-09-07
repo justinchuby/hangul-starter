@@ -1,13 +1,22 @@
 const consonants = [
   { letter: "ㄱ", roman: "g", hint: "起音介于“g / k”之间，先按“g”记" },
+  { letter: "ㄲ", roman: "kk", hint: "紧音；喉部更紧、没有额外送气，不是重复读两个“ㄱ”" },
   { letter: "ㄴ", roman: "n", hint: "接近“n”，舌尖轻触上齿龈" },
   { letter: "ㄷ", roman: "d", hint: "起音介于“d / t”之间，先按“d”记" },
+  { letter: "ㄸ", roman: "tt", hint: "紧音；比 ㄷ 更紧、更短，不是重复读两个“ㄷ”" },
   { letter: "ㄹ", roman: "r", hint: "在元音前常近似轻弹的“r”" },
   { letter: "ㅁ", roman: "m", hint: "接近“m”" },
   { letter: "ㅂ", roman: "b", hint: "起音介于“b / p”之间，先按“b”记" },
+  { letter: "ㅃ", roman: "pp", hint: "紧音；比 ㅂ 更紧、更短，不是重复读两个“ㅂ”" },
   { letter: "ㅅ", roman: "s", hint: "接近“s”；遇 ㅣ 时更像“sh”" },
+  { letter: "ㅆ", roman: "ss", hint: "紧音；比 ㅅ 更紧、更清晰，不是重复读两个“ㅅ”" },
   { letter: "ㅇ", roman: "", hint: "放在音节开头时不发音，像一个安静的座位" },
   { letter: "ㅈ", roman: "j", hint: "接近“j”，不是普通汉语拼音的“z”" },
+  { letter: "ㅉ", roman: "jj", hint: "紧音；比 ㅈ 更紧、更短，不是重复读两个“ㅈ”" },
+  { letter: "ㅊ", roman: "ch", hint: "接近“ch”，送气更明显" },
+  { letter: "ㅋ", roman: "k", hint: "接近送气的“k”，比 ㄱ 气流更明显" },
+  { letter: "ㅌ", roman: "t", hint: "接近送气的“t”，比 ㄷ 气流更明显" },
+  { letter: "ㅍ", roman: "p", hint: "接近送气的“p”，比 ㅂ 气流更明显" },
   { letter: "ㅎ", roman: "h", hint: "接近轻轻送气的“h”" },
 ];
 
@@ -24,14 +33,23 @@ const syllableBase = 0xac00;
 const learnedStorageKey = "hangul-starter-learned";
 const hangulInitialIndexes = {
   "ㄱ": 0,
+  "ㄲ": 1,
   "ㄴ": 2,
   "ㄷ": 3,
+  "ㄸ": 4,
   "ㄹ": 5,
   "ㅁ": 6,
   "ㅂ": 7,
+  "ㅃ": 8,
   "ㅅ": 9,
+  "ㅆ": 10,
   "ㅇ": 11,
   "ㅈ": 12,
+  "ㅉ": 13,
+  "ㅊ": 14,
+  "ㅋ": 15,
+  "ㅌ": 16,
+  "ㅍ": 17,
   "ㅎ": 18,
 };
 const hangulVowelIndexes = {
@@ -76,16 +94,37 @@ let score = 0;
 let questionAnswered = false;
 const practicePrompts = [
   { target: "가", guide: "慢慢读：ga" },
+  { target: "까", guide: "慢慢读：kka（紧音，不是两个“ㄱ”）" },
+  { target: "나", guide: "慢慢读：na" },
+  { target: "다", guide: "慢慢读：da" },
+  { target: "따", guide: "慢慢读：tta（紧音，不是两个“ㄷ”）" },
+  { target: "라", guide: "慢慢读：ra" },
+  { target: "마", guide: "慢慢读：ma" },
+  { target: "바", guide: "慢慢读：ba" },
+  { target: "빠", guide: "慢慢读：ppa（紧音，不是两个“ㅂ”）" },
+  { target: "사", guide: "慢慢读：sa" },
+  { target: "싸", guide: "慢慢读：ssa（紧音，不是两个“ㅅ”）" },
+  { target: "아", guide: "慢慢读：a（开头的 ㅇ 不发音）" },
+  { target: "자", guide: "慢慢读：ja" },
+  { target: "짜", guide: "慢慢读：jja（紧音，不是两个“ㅈ”）" },
+  { target: "차", guide: "慢慢读：cha" },
+  { target: "카", guide: "慢慢读：ka" },
+  { target: "타", guide: "慢慢读：ta" },
+  { target: "파", guide: "慢慢读：pa" },
+  { target: "하", guide: "慢慢读：ha" },
   { target: "너", guide: "慢慢读：neo" },
   { target: "모", guide: "慢慢读：mo" },
   { target: "수", guide: "慢慢读：su" },
   { target: "이", guide: "慢慢读：i" },
-  { target: "하", guide: "慢慢读：ha" },
 ];
 const SpeechRecognitionConstructor = window.SpeechRecognition || window.webkitSpeechRecognition;
 let practiceIndex = -1;
 let recognition;
 let recognitionState = "idle";
+
+function isSecureSpeechContext() {
+  return window.isSecureContext;
+}
 
 function loadLearnedLetters() {
   try {
@@ -333,11 +372,11 @@ function normalizeTranscript(value) {
 }
 
 function setRecognitionControls() {
-  const supported = Boolean(SpeechRecognitionConstructor);
-  const busy = recognitionState === "listening" || recognitionState === "stopping";
-  startListeningButton.disabled = !supported || busy;
-  stopListeningButton.disabled = !supported || recognitionState !== "listening";
-  retryListeningButton.disabled = !supported || busy;
+  const available = Boolean(SpeechRecognitionConstructor) && isSecureSpeechContext();
+  const busy = ["requesting-permission", "listening", "stopping"].includes(recognitionState);
+  startListeningButton.disabled = !available || busy;
+  stopListeningButton.disabled = !available || recognitionState !== "listening";
+  retryListeningButton.disabled = !available || busy;
   newPracticeButton.disabled = busy;
 }
 
@@ -350,6 +389,7 @@ function showRecognitionError(error) {
     "not-allowed": "浏览器没有获得麦克风权限。请在地址栏允许麦克风后再试，或改用下面的默读练习。",
     "service-not-allowed": "浏览器或语音服务不允许此次识别。你可以换用支持 Web Speech API 的浏览器，或改用默读练习。",
     "audio-capture": "没有找到可用麦克风。请检查设备连接后再试，或改用默读练习。",
+    "not-readable": "麦克风正在被其他应用占用。请关闭占用麦克风的应用后再试，或改用默读练习。",
     "no-speech": "没有听到可识别的声音。请靠近麦克风、清楚读出目标后再试。",
     network: "语音识别服务需要网络，但当前连接不可用。恢复网络后再试，或改用默读练习。",
     "language-not-supported": "当前浏览器不支持韩语（ko-KR）识别。请改用默读练习。",
@@ -406,9 +446,56 @@ function createRecognition() {
   };
 }
 
-function startListening() {
-  if (!SpeechRecognitionConstructor) return;
+function explainPermissionError(error) {
+  const reasons = {
+    NotAllowedError: "浏览器没有获得麦克风权限。请在地址栏允许麦克风后再试，或改用默读练习。",
+    SecurityError: "当前页面不是安全上下文，浏览器不能请求麦克风。请通过 HTTPS 或 http://localhost 打开本页。",
+    NotFoundError: "没有找到可用麦克风。请检查设备连接后再试，或改用默读练习。",
+    NotReadableError: "麦克风正在被其他应用占用。请关闭占用麦克风的应用后再试，或改用默读练习。",
+    OverconstrainedError: "当前设备无法满足麦克风请求。请检查输入设备后再试，或改用默读练习。",
+  };
+  return reasons[error.name] || `无法请求麦克风权限（${error.name || "未知原因"}）。请再试，或改用默读练习。`;
+}
+
+async function requestMicrophonePermission() {
+  if (!navigator.mediaDevices?.getUserMedia) {
+    speechSupport.textContent = "此浏览器无法预先请求麦克风权限；接下来会由语音识别功能尝试请求。若未出现提示，请改用支持 Web Speech API 的浏览器或默读练习。";
+    return true;
+  }
+
+  let stream;
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    return true;
+  } catch (error) {
+    recognitionState = "error";
+    setRecognitionControls();
+    setRecognitionFeedback(explainPermissionError(error));
+    return false;
+  } finally {
+    stream?.getTracks().forEach((track) => track.stop());
+  }
+}
+
+async function startListening() {
+  if (!SpeechRecognitionConstructor) {
+    setRecognitionFeedback("当前浏览器不支持浏览器内韩语识别。请使用“听一听”或默读三遍。");
+    return;
+  }
+  if (!isSecureSpeechContext()) {
+    recognitionState = "error";
+    setRecognitionControls();
+    setRecognitionFeedback("跟读检测需要 HTTPS 或 http://localhost。请不要直接打开文件；请在本地服务器或 HTTPS 网站中重试。");
+    return;
+  }
   if (!recognition) createRecognition();
+  recognitionState = "requesting-permission";
+  setRecognitionControls();
+  speechResult.textContent = "正在请求麦克风权限…";
+  setRecognitionFeedback("请在浏览器提示中允许使用麦克风；权限只用于本次跟读，音频不会被保存或上传。");
+  const allowed = await requestMicrophonePermission();
+  if (!allowed) return;
+
   recognitionState = "listening";
   setRecognitionControls();
   try {
@@ -443,10 +530,14 @@ function updatePracticeTarget() {
 }
 
 function initializeRecognition() {
-  if (SpeechRecognitionConstructor) {
-    speechSupport.textContent = "此浏览器支持浏览器内韩语识别。开始时会请求麦克风权限；本页不保存或上传音频与转写。";
-  } else {
+  if (!SpeechRecognitionConstructor) {
     speechSupport.textContent = "当前浏览器不支持浏览器内语音识别。请使用“听一听”或默读三遍，再回到拼读小桌练习。";
+  } else if (!isSecureSpeechContext()) {
+    speechSupport.textContent = "跟读检测需要 HTTPS 或 http://localhost。当前页面不是安全上下文，已停用跟读；请使用本地服务器或 HTTPS 网站。";
+  } else if (!navigator.mediaDevices?.getUserMedia) {
+    speechSupport.textContent = "此浏览器支持语音识别，但不能预先请求麦克风权限。点击开始后会尝试由识别功能请求；本页不保存或上传音频与转写。";
+  } else {
+    speechSupport.textContent = "此浏览器支持浏览器内韩语识别。点击开始会请求麦克风权限，随后立即释放权限测试用的音频轨道并启动识别；本页不保存或上传音频与转写。";
   }
   setRecognitionControls();
 }
