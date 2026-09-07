@@ -635,12 +635,16 @@ progress {
   display: grid;
   width: 100%;
   min-height: 5.2rem;
+  margin: 0;
   padding: 0.72rem 0.75rem 0.4rem;
   gap: 0.4rem;
   align-content: space-between;
+  appearance: none;
+  -webkit-appearance: none;
   border: 0;
   color: inherit;
   background: transparent;
+  font: inherit;
   text-align: left;
 }
 
@@ -687,10 +691,13 @@ progress {
   min-height: 2.75rem;
   margin: 0 0.55rem 0.55rem 0.2rem;
   padding: 0.25rem 0.65rem;
+  appearance: none;
+  -webkit-appearance: none;
   border: 1px solid currentColor;
   border-radius: 999px;
   color: #594934;
-  background: transparent;
+  background: #fffaf0;
+  font: inherit;
   font-size: 0.7rem;
   font-weight: 850;
 }
@@ -708,6 +715,14 @@ progress {
 .screen-reader-status {
   min-height: 1lh;
   margin: 1rem 0 0;
+}
+
+.storage-status {
+  min-height: 1.4em;
+  margin: 0.15rem 0 0;
+  color: #594934;
+  font-size: 0.74rem;
+  line-height: 1.35;
 }
 
 .letter-speech-status {

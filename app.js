@@ -144,6 +144,7 @@ const progressCount = document.querySelector("#progress-count");
 const headerProgress = document.querySelector("#header-progress");
 const learningProgress = document.querySelector("#learning-progress");
 const progressStatus = document.querySelector("#progress-status");
+const storageStatus = document.querySelector("#storage-status");
 const practiceTarget = document.querySelector("#practice-target");
 const practiceGuide = document.querySelector("#practice-guide");
 const practiceAlternativeTarget = document.querySelector("#practice-alternative-target");
@@ -161,6 +162,7 @@ const speechFeedback = document.querySelector("#speech-feedback");
 let selectedConsonant = consonants[0];
 let selectedVowel = vowels[0];
 let selectedFinal = finalConsonants[0];
+let progressStorageAvailable = true;
 let learnedLetters = new Set(loadLearnedLetters());
 let quiz = [];
 let quizIndex = 0;
@@ -206,16 +208,34 @@ function isSecureSpeechContext() {
 }
 
 function loadLearnedLetters() {
+  let stored;
   try {
-    const stored = JSON.parse(localStorage.getItem(learnedStorageKey));
-    return Array.isArray(stored) ? stored : [];
+    stored = window.localStorage.getItem(learnedStorageKey);
+  } catch {
+    disableProgressPersistence();
+    return [];
+  }
+  try {
+    const parsed = JSON.parse(stored);
+    return Array.isArray(parsed) ? parsed : [];
   } catch {
     return [];
   }
 }
 
 function saveLearnedLetters() {
-  localStorage.setItem(learnedStorageKey, JSON.stringify([...learnedLetters]));
+  if (!progressStorageAvailable) return;
+  try {
+    window.localStorage.setItem(learnedStorageKey, JSON.stringify([...learnedLetters]));
+  } catch {
+    disableProgressPersistence();
+  }
+}
+
+function disableProgressPersistence() {
+  if (!progressStorageAvailable) return;
+  progressStorageAvailable = false;
+  storageStatus.textContent = "此浏览器/嵌入环境不允许保存进度，本次学习仍可使用，刷新后不会保留。";
 }
 
 function makeSyllable(consonant, vowel, final = selectedFinal) {
