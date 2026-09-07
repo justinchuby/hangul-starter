@@ -603,29 +603,28 @@ progress {
 .letter-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.5rem;
+  gap: 0.7rem;
 }
 
 .letter-card {
   display: grid;
-  min-height: 10.4rem;
-  align-content: start;
+  grid-template-rows: 1fr auto;
+  min-height: 8.25rem;
+  overflow: hidden;
   color: var(--ink);
   background: #fffaf0;
   text-align: left;
-  box-shadow: 3px 3px 0 #a89f8c;
+  box-shadow: 1px 2px 5px rgba(62, 52, 43, 0.14);
 }
 
 .letter-card:hover,
 .letter-card:focus-within {
-  transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0 #a89f8c;
+  transform: translateY(-1px);
+  box-shadow: 2px 4px 8px rgba(62, 52, 43, 0.18);
 }
 
 .letter-card.is-learned {
-  color: #0d3d2c;
-  background: var(--mint);
-  box-shadow: 3px 3px 0 #397254;
+  box-shadow: 1px 2px 5px rgba(0, 79, 53, 0.22);
 }
 
 .tense-card {
@@ -635,8 +634,9 @@ progress {
 .letter-playback {
   display: grid;
   width: 100%;
-  min-height: 6.9rem;
-  padding: 0.7rem;
+  min-height: 5.2rem;
+  padding: 0.72rem 0.75rem 0.4rem;
+  gap: 0.4rem;
   align-content: space-between;
   border: 0;
   color: inherit;
@@ -645,11 +645,12 @@ progress {
 }
 
 .letter-playback:hover:not(:disabled) {
-  background: #f5e5c4;
+  color: #286144;
+  background: transparent;
 }
 
 .letter-playback:active:not(:disabled) {
-  background: var(--amber);
+  background: rgba(229, 182, 80, 0.2);
 }
 
 .letter-playback:disabled {
@@ -658,52 +659,50 @@ progress {
 }
 
 .letter-symbol {
-  font-size: clamp(2rem, 9vw, 3.5rem);
+  font-size: clamp(2.45rem, 5vw, 3.45rem);
   font-weight: 900;
   line-height: 1;
 }
 
 .letter-meta {
   display: grid;
-  gap: 0.05rem;
-  font-size: 0.875rem;
-  line-height: 1.3;
+  gap: 0.12rem;
+  color: #594934;
+  font-size: 0.72rem;
+  line-height: 1.25;
 }
 
 .letter-meta b {
-  font-size: 0.88rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 750;
 }
 
 .learn-button {
   display: inline-flex;
+  width: fit-content;
+  justify-self: end;
   align-items: center;
   justify-content: center;
   min-height: 2.75rem;
-  margin: 0 0.55rem 0.55rem;
-  padding: 0.25rem 0.35rem;
+  margin: 0 0.55rem 0.55rem 0.2rem;
+  padding: 0.25rem 0.65rem;
   border: 1px solid currentColor;
-  color: #286144;
-  background: #fffdf7;
-  font-size: 0.78rem;
+  border-radius: 999px;
+  color: #594934;
+  background: transparent;
+  font-size: 0.7rem;
   font-weight: 850;
 }
 
 .learn-button:hover {
-  color: var(--ink);
+  color: #286144;
   background: var(--amber);
 }
 
 .learn-button[aria-pressed="true"] {
   color: #0d3d2c;
   background: var(--mint);
-}
-
-.letter-example-note {
-  min-height: 2.55em;
-  padding: 0.45rem 0 0;
-  color: #594934;
-  font-size: 0.68rem;
-  line-height: 1.3;
 }
 
 .screen-reader-status {
@@ -1087,7 +1086,7 @@ footer {
   }
 
   .letter-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
   .vowel-grid {
@@ -1177,11 +1176,11 @@ footer {
   }
 
   .letter-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .letter-card {
-    min-height: 10.5rem;
+    min-height: 8rem;
   }
 }
 

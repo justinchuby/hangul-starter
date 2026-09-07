@@ -46,6 +46,22 @@ const vowels = [
 
 const tenseConsonantLetters = new Set(["ㄲ", "ㄸ", "ㅃ", "ㅆ", "ㅉ"]);
 const compoundVowelLetters = new Set(["ㅐ", "ㅒ", "ㅔ", "ㅖ", "ㅘ", "ㅙ", "ㅚ", "ㅝ", "ㅞ", "ㅟ", "ㅢ"]);
+const cardHints = {
+  "ㄱ": "舌根 · 牙音母形", "ㄲ": "现代紧音 · 更紧", "ㄴ": "舌尖 · 舌音母形",
+  "ㄷ": "舌音 · ㄴ 加画", "ㄸ": "现代紧音 · 更紧", "ㄹ": "半舌音 · ㄴ 加三画",
+  "ㅁ": "双唇 · 唇音母形", "ㅂ": "唇音 · ㅁ 加画", "ㅃ": "现代紧音 · 更紧",
+  "ㅅ": "牙齿附近 · 齿音母形", "ㅆ": "现代紧音 · 更紧", "ㅇ": "喉音 · 初声无声",
+  "ㅈ": "齿音 · ㅅ 加画", "ㅉ": "现代紧音 · 更紧", "ㅊ": "齿音 · 再加画",
+  "ㅋ": "牙音 · ㄱ 加画", "ㅌ": "舌音 · ㄷ 加画", "ㅍ": "唇音 · ㅂ 加画",
+  "ㅎ": "喉音 · 历史路径",
+  "ㅏ": "开口自然放松", "ㅐ": "组合元音 · ㅏ + ㅣ", "ㅑ": "开口加 y 起音",
+  "ㅒ": "组合元音 · ㅑ + ㅣ", "ㅓ": "嘴微张、放松", "ㅔ": "组合元音 · ㅓ + ㅣ",
+  "ㅕ": "微张加 y 起音", "ㅖ": "组合元音 · ㅕ + ㅣ", "ㅗ": "圆唇向前",
+  "ㅘ": "组合元音 · ㅗ + ㅏ", "ㅙ": "组合元音 · ㅗ + ㅐ", "ㅚ": "组合元音 · ㅗ + ㅣ",
+  "ㅛ": "圆唇加 y 起音", "ㅜ": "圆唇向前", "ㅝ": "组合元音 · ㅜ + ㅓ",
+  "ㅞ": "组合元音 · ㅜ + ㅔ", "ㅟ": "组合元音 · ㅜ + ㅣ", "ㅠ": "圆唇加 y 起音",
+  "ㅡ": "嘴唇放平", "ㅢ": "组合元音 · ㅡ + ㅣ", "ㅣ": "嘴角轻展开",
+};
 const baseConsonants = consonants.filter((item) => !tenseConsonantLetters.has(item.letter));
 const tenseConsonants = consonants.filter((item) => tenseConsonantLetters.has(item.letter));
 const baseVowels = vowels.filter((item) => !compoundVowelLetters.has(item.letter));
@@ -221,17 +237,13 @@ function buildLetterCard(item, type) {
   if (isLearned) card.classList.add("is-learned");
   card.dataset.letter = item.letter;
   const example = getLetterExample(item, type);
-  const exampleExplanation = type === "vowel"
-    ? "前置 ㅇ 在开头无声，所以听到的是元音"
-    : "用 ㅡ 垫出的示例音，不是孤立辅音的唯一读法";
   card.innerHTML = `
     <button class="letter-playback" type="button" aria-label="播放 ${item.letter} 的示例音 ${example}">
       <span class="letter-symbol" lang="ko">${item.letter}</span>
       <span class="letter-meta">
+        <span>${cardHints[item.letter]}</span>
         <b>近似：${item.roman || "起首无声"}</b>
-        <span>${item.hint}</span>
       </span>
-      <span class="letter-example-note">${exampleExplanation}</span>
     </button>
     <button class="learn-button" type="button" aria-pressed="${isLearned}" aria-label="${item.letter}，${isLearned ? "取消已学会标记" : "标为已学会"}">${isLearned ? "已学会 · 取消" : "标为已学会"}</button>
   `;
@@ -300,6 +312,10 @@ function buildSelector(items, target, category) {
     const categoryName = category === "consonant" ? "初声" : category === "vowel" ? "元音" : "收音";
     button.setAttribute("aria-label", `选择${categoryName} ${item.label || item.letter || "无收音"}`);
     button.addEventListener("click", () => {
+      const current = category === "consonant"
+        ? selectedConsonant
+        : category === "vowel" ? selectedVowel : selectedFinal;
+      const selectionChanged = current.letter !== item.letter;
       if (category === "consonant") selectedConsonant = item;
       else if (category === "vowel") selectedVowel = item;
       else selectedFinal = item;
@@ -308,7 +324,8 @@ function buildSelector(items, target, category) {
         ? "#consonant-selector"
         : category === "vowel" ? "#vowel-selector" : "#final-selector";
       document.querySelector(`${selectorId} button[data-letter="${item.letter}"]`).focus();
-      updateSyllable();
+      const syllable = updateSyllable();
+      if (selectionChanged) speakKorean(syllable, `新音节“${syllable}”`, { auto: true });
     });
     return button;
   });
@@ -343,6 +360,7 @@ function updateSyllable() {
     ? `收音 ${selectedFinal.letter} 在这里先按拼写记；实际读法会随词而变化。`
     : "这里没有收音。";
   pronunciationTip.innerHTML = `<strong>近似提示：</strong>${onsetTip} ${selectedVowel.letter} ${selectedVowel.hint}；${finalTip} 组合 ${syllable} 的罗马音提示为 ${romanization}，仅作入门参考。`;
+  return syllable;
 }
 
 function shuffle(items) {
@@ -684,7 +702,7 @@ function updateSpeechSynthesisSupport() {
   setSpeechSynthesisStatus(message);
 }
 
-function speakKorean(text, description) {
+function speakKorean(text, description, { auto = false } = {}) {
   const koreanVoice = getKoreanVoice();
   if (!koreanVoice) {
     updateSpeechSynthesisSupport();
@@ -694,9 +712,11 @@ function speakKorean(text, description) {
   utterance.lang = "ko-KR";
   utterance.voice = koreanVoice;
   utterance.rate = 0.72;
-  setSpeechSynthesisStatus(`正在朗读${description}。`);
+  setSpeechSynthesisStatus(auto ? `正在自动朗读${text}。` : `正在朗读${description}。`);
   utterance.onend = () => {
-    setSpeechSynthesisStatus(`已朗读${description}。可以再听一次，或自己跟读。`);
+    setSpeechSynthesisStatus(auto
+      ? `已自动朗读${text}。可点“听发音”再听一次。`
+      : `已朗读${description}。可以再听一次，或自己跟读。`);
   };
   utterance.onerror = () => {
     setSpeechSynthesisStatus(`浏览器暂时无法朗读${description}。请看着示例音节默读三遍。`);
