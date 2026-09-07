@@ -328,6 +328,11 @@ output {
   color: #87580f;
 }
 
+.builder-play-button {
+  min-height: 2.75rem;
+  margin: -0.2rem 0 1.2rem;
+}
+
 .selector-grid {
   display: grid;
   gap: 1.25rem;
@@ -412,6 +417,12 @@ output {
 
 .advanced-final-selector {
   border-top-style: dashed;
+}
+
+.final-selector-column {
+  display: grid;
+  min-width: 0;
+  gap: 1.25rem;
 }
 
 .advanced-final-note {
@@ -1190,6 +1201,17 @@ footer {
   .practice-section {
     grid-template-columns: 0.75fr 1.25fr;
     align-items: start;
+  }
+}
+
+@media (min-width: 900px) {
+  .selector-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .selector-options {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 

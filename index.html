@@ -6,7 +6,7 @@
     <meta name="description" content="给中文初学者的互动韩语字母与拼读练习。" />
     <meta name="feature-letter-playback" content="enabled" />
     <title>韩语字母起步站</title>
-    <link rel="stylesheet" href="styles.css?v=2026-09-07.9" />
+    <link rel="stylesheet" href="styles.css?v=2026-09-07.10" />
   </head>
   <body>
     <!--
@@ -64,6 +64,7 @@
           <p class="pronunciation-note" id="pronunciation-tip">
             <strong>近似提示：</strong>接近“嘎”的起音，但不是完全相同。
           </p>
+          <button class="quiet-button builder-play-button" id="play-syllable" type="button">听发音</button>
           <div class="selector-grid">
             <fieldset class="selector-field">
               <legend><span aria-hidden="true">1</span> 选初声</legend>
@@ -75,15 +76,17 @@
               <p class="selector-help">选元音，和初声合成一个音节块。</p>
               <div id="vowel-selector" class="selector-options"></div>
             </fieldset>
-            <fieldset class="selector-field">
-              <legend><span aria-hidden="true">3</span> 选收音（可选）</legend>
-              <div id="final-selector" class="selector-options" aria-label="选择常用单收音"></div>
-              <p class="final-selector-guide">先练单收音。词末常合流为 7 类；<span lang="ko">ㅈ、ㅊ、ㅅ、ㅆ</span> 常听作 [t] 类闭塞。</p>
-            </fieldset>
-            <fieldset class="selector-field advanced-final-selector">
-              <legend>进阶双收音</legend>
-              <div id="advanced-final-selector" class="selector-options" aria-label="选择进阶双收音"></div>
-            </fieldset>
+            <div class="final-selector-column">
+              <fieldset class="selector-field">
+                <legend><span aria-hidden="true">3</span> 选收音（可选）</legend>
+                <div id="final-selector" class="selector-options" aria-label="选择常用单收音"></div>
+                <p class="final-selector-guide">先练单收音。词末常合流为 7 类；<span lang="ko">ㅈ、ㅊ、ㅅ、ㅆ</span> 常听作 [t] 类闭塞。</p>
+              </fieldset>
+              <fieldset class="selector-field advanced-final-selector">
+                <legend>进阶双收音</legend>
+                <div id="advanced-final-selector" class="selector-options" aria-label="选择进阶双收音"></div>
+              </fieldset>
+            </div>
           </div>
           <aside class="advanced-final-note" aria-labelledby="advanced-final-title">
             <h3 id="advanced-final-title">进阶提示：双收音先按整词学</h3>
@@ -319,6 +322,6 @@
       <span lang="ko">한 글자씩, 한 칸씩.</span>
       <span>一次一格，慢慢就会读。</span>
     </footer>
-    <script src="app.js?v=2026-09-07.9"></script>
+    <script src="app.js?v=2026-09-07.10"></script>
   </body>
 </html>

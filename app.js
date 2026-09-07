@@ -179,6 +179,7 @@ const stopListeningButton = document.querySelector("#stop-listening");
 const retryListeningButton = document.querySelector("#retry-listening");
 const newPracticeButton = document.querySelector("#new-practice");
 const playPronunciationButton = document.querySelector("#play-pronunciation");
+const playSyllableButton = document.querySelector("#play-syllable");
 const speechSupport = document.querySelector("#speech-support");
 const speechSynthesisStatus = document.querySelector("#speech-synthesis-status");
 const letterSpeechStatus = document.querySelector("#letter-speech-status");
@@ -771,6 +772,7 @@ function updateSpeechSynthesisSupport() {
       ? "已找到韩语朗读声音。朗读由你的浏览器和设备处理。"
       : "当前设备没有可用的韩语朗读声音。请看着示例音节默读三遍。";
   playPronunciationButton.disabled = !koreanVoice;
+  playSyllableButton.disabled = !koreanVoice;
   document.querySelectorAll(".letter-playback").forEach((button) => {
     button.disabled = !koreanVoice;
   });
@@ -805,6 +807,11 @@ function playPronunciation() {
   speakKorean(prompt.spokenTarget, `练习“${prompt.spokenTarget}”`);
 }
 
+function playSyllable() {
+  const syllable = makeSyllable(selectedConsonant, selectedVowel, selectedFinal);
+  speakKorean(syllable, `音节“${syllable}”`);
+}
+
 document.querySelector("#reset-progress").addEventListener("click", () => {
   if (!window.confirm("确定要清除所有已学字母的进度吗？")) return;
   learnedLetters = new Set();
@@ -823,6 +830,7 @@ newPracticeButton.addEventListener("click", () => {
   updatePracticeTarget();
 });
 playPronunciationButton.addEventListener("click", playPronunciation);
+playSyllableButton.addEventListener("click", playSyllable);
 if ("speechSynthesis" in window) {
   window.speechSynthesis.addEventListener("voiceschanged", updateSpeechSynthesisSupport);
 }
