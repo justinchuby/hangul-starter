@@ -138,6 +138,7 @@ const newPracticeButton = document.querySelector("#new-practice");
 const playPronunciationButton = document.querySelector("#play-pronunciation");
 const speechSupport = document.querySelector("#speech-support");
 const speechSynthesisStatus = document.querySelector("#speech-synthesis-status");
+const letterSpeechStatus = document.querySelector("#letter-speech-status");
 const speechResult = document.querySelector("#speech-result");
 const speechFeedback = document.querySelector("#speech-feedback");
 
@@ -181,6 +182,8 @@ const SpeechRecognitionConstructor = window.SpeechRecognition || window.webkitSp
 let practiceIndex = -1;
 let recognition;
 let recognitionState = "idle";
+const neutralVowel = vowels.find((item) => item.letter === "ㅡ");
+const silentInitial = consonants.find((item) => item.letter === "ㅇ");
 
 function isSecureSpeechContext() {
   return window.isSecureContext;
@@ -212,21 +215,32 @@ function romanize(consonant, vowel, final = selectedFinal) {
 }
 
 function buildLetterCard(item, type) {
-  const card = document.createElement("button");
+  const card = document.createElement("article");
   const isLearned = learnedLetters.has(item.letter);
-  card.type = "button";
   card.className = type === "tense" ? "letter-card tense-card" : "letter-card";
+  if (isLearned) card.classList.add("is-learned");
   card.dataset.letter = item.letter;
-  card.setAttribute("aria-pressed", String(isLearned));
-  card.setAttribute("aria-label", `${item.letter}，${item.roman || "音节开头不发音"}。${isLearned ? "已学会" : "标记为已学会"}`);
+  const example = getLetterExample(item, type);
+  const exampleExplanation = type === "vowel"
+    ? "前置 ㅇ 在开头无声，所以听到的是元音"
+    : "用 ㅡ 垫出的示例音，不是孤立辅音的唯一读法";
   card.innerHTML = `
-    <span class="letter-symbol" lang="ko">${item.letter}</span>
-    <span class="letter-meta">
-      <b>近似：${item.roman || "起首无声"}</b>
-      <span>${item.hint}</span>
-    </span>
+    <button class="learn-letter" type="button" aria-pressed="${isLearned}" aria-label="${item.letter}，${item.roman || "音节开头不发音"}。${isLearned ? "已学会" : "标记为已学会"}">
+      <span class="letter-symbol" lang="ko">${item.letter}</span>
+      <span class="letter-meta">
+        <b>近似：${item.roman || "起首无声"}</b>
+        <span>${item.hint}</span>
+      </span>
+    </button>
+    <button class="letter-sound-button" type="button" aria-label="听 ${item.letter} 的示例音 ${example}">
+      <span aria-hidden="true">◖</span> 听 <span lang="ko">${example}</span>
+    </button>
+    <span class="letter-example-note">${exampleExplanation}</span>
   `;
-  card.addEventListener("click", () => toggleLearned(item.letter));
+  card.querySelector(".learn-letter").addEventListener("click", () => toggleLearned(item.letter));
+  card.querySelector(".letter-sound-button").addEventListener("click", () => {
+    speakKorean(example, `${item.letter} 的示例音“${example}”`);
+  });
   return card;
 }
 
@@ -235,6 +249,13 @@ function renderLetterCards() {
   tenseConsonantCards.replaceChildren(...tenseConsonants.map((item) => buildLetterCard(item, "tense")));
   baseVowelCards.replaceChildren(...baseVowels.map((item) => buildLetterCard(item, "vowel")));
   compoundVowelCards.replaceChildren(...compoundVowels.map((item) => buildLetterCard(item, "vowel")));
+  updateSpeechSynthesisSupport();
+}
+
+function getLetterExample(item, type) {
+  return type === "vowel"
+    ? makeSyllable(silentInitial, item, finalConsonants[0])
+    : makeSyllable(item, neutralVowel, finalConsonants[0]);
 }
 
 function toggleLearned(letter) {
@@ -640,36 +661,55 @@ function initializeRecognition() {
   setRecognitionControls();
 }
 
-function updateSpeechSynthesisSupport() {
-  if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
-    playPronunciationButton.disabled = true;
-    speechSynthesisStatus.textContent = "当前浏览器没有可用的朗读功能。请看着目标默读三遍。";
-    return;
-  }
-  const koreanVoice = window.speechSynthesis.getVoices()
-    .find((voice) => voice.lang.toLowerCase().startsWith("ko"));
-  playPronunciationButton.disabled = !koreanVoice;
-  speechSynthesisStatus.textContent = koreanVoice
-    ? "已找到韩语朗读声音。朗读由你的浏览器和设备处理。"
-    : "当前设备没有可用的韩语朗读声音。请看着目标默读三遍。";
+function setSpeechSynthesisStatus(message) {
+  speechSynthesisStatus.textContent = message;
+  letterSpeechStatus.textContent = message;
 }
 
-function playPronunciation() {
-  const koreanVoice = window.speechSynthesis.getVoices()
-    .find((voice) => voice.lang.toLowerCase().startsWith("ko"));
+function getKoreanVoice() {
+  if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) return null;
+  return window.speechSynthesis.getVoices()
+    .find((voice) => voice.lang.toLowerCase().startsWith("ko")) || null;
+}
+
+function updateSpeechSynthesisSupport() {
+  const koreanVoice = getKoreanVoice();
+  const message = !("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)
+    ? "当前浏览器没有可用的朗读功能。请看着示例音节默读三遍。"
+    : koreanVoice
+      ? "已找到韩语朗读声音。朗读由你的浏览器和设备处理。"
+      : "当前设备没有可用的韩语朗读声音。请看着示例音节默读三遍。";
+  playPronunciationButton.disabled = !koreanVoice;
+  document.querySelectorAll(".letter-sound-button").forEach((button) => {
+    button.disabled = !koreanVoice;
+  });
+  setSpeechSynthesisStatus(message);
+}
+
+function speakKorean(text, description) {
+  const koreanVoice = getKoreanVoice();
   if (!koreanVoice) {
     updateSpeechSynthesisSupport();
     return;
   }
-  const utterance = new SpeechSynthesisUtterance(practicePrompts[practiceIndex].target);
+  const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = "ko-KR";
   utterance.voice = koreanVoice;
   utterance.rate = 0.72;
+  setSpeechSynthesisStatus(`正在朗读${description}。`);
+  utterance.onend = () => {
+    setSpeechSynthesisStatus(`已朗读${description}。可以再听一次，或自己跟读。`);
+  };
   utterance.onerror = () => {
-    speechSynthesisStatus.textContent = "浏览器暂时无法朗读该目标。请看着目标默读三遍。";
+    setSpeechSynthesisStatus(`浏览器暂时无法朗读${description}。请看着示例音节默读三遍。`);
   };
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(utterance);
+}
+
+function playPronunciation() {
+  const target = practicePrompts[practiceIndex].target;
+  speakKorean(target, `练习“${target}”`);
 }
 
 document.querySelector("#reset-progress").addEventListener("click", () => {
