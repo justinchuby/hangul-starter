@@ -119,15 +119,39 @@ const hangulFinalIndexes = {
   "ㅋ": 24, "ㅌ": 25, "ㅍ": 26, "ㅎ": 27,
 };
 const finalConsonants = [
-  { letter: "", label: "无", roman: "", hint: "不加收音" },
-  { letter: "ㄱ", label: "ㄱ", roman: "k", hint: "代表收音" },
-  { letter: "ㄴ", label: "ㄴ", roman: "n", hint: "代表收音" },
-  { letter: "ㄷ", label: "ㄷ", roman: "t", hint: "代表收音" },
-  { letter: "ㄹ", label: "ㄹ", roman: "l", hint: "代表收音" },
-  { letter: "ㅁ", label: "ㅁ", roman: "m", hint: "代表收音" },
-  { letter: "ㅂ", label: "ㅂ", roman: "p", hint: "代表收音" },
-  { letter: "ㅇ", label: "ㅇ", roman: "ng", hint: "代表收音" },
+  { letter: "", label: "无收音", roman: "", soundHint: "无收音", group: "common" },
+  { letter: "ㄱ", label: "ㄱ", roman: "k", soundHint: "词末常听作 [k] 类闭塞", group: "common" },
+  { letter: "ㄲ", label: "ㄲ", roman: "kk", soundHint: "词末通常听作 [k] 类闭塞", group: "common" },
+  { letter: "ㄴ", label: "ㄴ", roman: "n", soundHint: "词末常听作 [n] 类鼻音", group: "common" },
+  { letter: "ㄷ", label: "ㄷ", roman: "t", soundHint: "词末通常听作 [t] 类闭塞", group: "common" },
+  { letter: "ㄹ", label: "ㄹ", roman: "l", soundHint: "词末常听作 [l] 类边音", group: "common" },
+  { letter: "ㅁ", label: "ㅁ", roman: "m", soundHint: "词末常听作 [m] 类鼻音", group: "common" },
+  { letter: "ㅂ", label: "ㅂ", roman: "p", soundHint: "词末常听作 [p] 类闭塞", group: "common" },
+  { letter: "ㅅ", label: "ㅅ", roman: "s", soundHint: "词末通常听作 [t] 类闭塞", group: "common" },
+  { letter: "ㅆ", label: "ㅆ", roman: "ss", soundHint: "词末通常听作 [t] 类闭塞", group: "common" },
+  { letter: "ㅇ", label: "ㅇ", roman: "ng", soundHint: "词末常听作 [ng] 类鼻音", group: "common" },
+  { letter: "ㅈ", label: "ㅈ", roman: "j", soundHint: "词末通常听作 [t] 类闭塞", group: "common" },
+  { letter: "ㅊ", label: "ㅊ", roman: "ch", soundHint: "词末通常听作 [t] 类闭塞", group: "common" },
+  { letter: "ㅋ", label: "ㅋ", roman: "k", soundHint: "词末通常听作 [k] 类闭塞", group: "common" },
+  { letter: "ㅌ", label: "ㅌ", roman: "t", soundHint: "词末通常听作 [t] 类闭塞", group: "common" },
+  { letter: "ㅍ", label: "ㅍ", roman: "p", soundHint: "词末通常听作 [p] 类闭塞", group: "common" },
+  { letter: "ㅎ", label: "ㅎ", roman: "h", soundHint: "词末变化较多，按整词听", group: "common" },
+  { letter: "ㄳ", label: "ㄳ（复合）", roman: "ks", soundHint: "进阶复合收音，按整词听", group: "cluster" },
+  { letter: "ㄵ", label: "ㄵ（复合）", roman: "nj", soundHint: "进阶复合收音，按整词听", group: "cluster" },
+  { letter: "ㄶ", label: "ㄶ（复合）", roman: "nh", soundHint: "进阶复合收音，按整词听", group: "cluster" },
+  { letter: "ㄺ", label: "ㄺ（复合）", roman: "lg", soundHint: "进阶复合收音，按整词听", group: "cluster" },
+  { letter: "ㄻ", label: "ㄻ（复合）", roman: "lm", soundHint: "进阶复合收音，按整词听", group: "cluster" },
+  { letter: "ㄼ", label: "ㄼ（复合）", roman: "lb", soundHint: "进阶复合收音，按整词听", group: "cluster" },
+  { letter: "ㄽ", label: "ㄽ（复合）", roman: "ls", soundHint: "进阶复合收音，按整词听", group: "cluster" },
+  { letter: "ㄾ", label: "ㄾ（复合）", roman: "lt", soundHint: "进阶复合收音，按整词听", group: "cluster" },
+  { letter: "ㄿ", label: "ㄿ（复合）", roman: "lp", soundHint: "进阶复合收音，按整词听", group: "cluster" },
+  { letter: "ㅀ", label: "ㅀ（复合）", roman: "lh", soundHint: "进阶复合收音，按整词听", group: "cluster" },
+  { letter: "ㅄ", label: "ㅄ（复合）", roman: "ps", soundHint: "进阶复合收音，按整词听", group: "cluster" },
 ];
+const finalSoundRomans = {
+  "ㄱ": "k", "ㄲ": "k", "ㄴ": "n", "ㄷ": "t", "ㄹ": "l", "ㅁ": "m", "ㅂ": "p",
+  "ㅅ": "t", "ㅆ": "t", "ㅇ": "ng", "ㅈ": "t", "ㅊ": "t", "ㅋ": "k", "ㅌ": "t", "ㅍ": "p",
+};
 const baseConsonantCards = document.querySelector("#base-consonant-cards");
 const tenseConsonantCards = document.querySelector("#tense-consonant-cards");
 const baseVowelCards = document.querySelector("#base-vowel-cards");
@@ -135,6 +159,7 @@ const compoundVowelCards = document.querySelector("#compound-vowel-cards");
 const consonantSelector = document.querySelector("#consonant-selector");
 const vowelSelector = document.querySelector("#vowel-selector");
 const finalSelector = document.querySelector("#final-selector");
+const advancedFinalSelector = document.querySelector("#advanced-final-selector");
 const syllableOutput = document.querySelector("#syllable");
 const romanizationOutput = document.querySelector("#romanization");
 const finalConsonantOutput = document.querySelector("#final-consonant");
@@ -195,6 +220,7 @@ const practicePrompts = [
   { target: "와", guide: "慢慢读：wa（组合元音 ㅘ）" },
   { target: "각", guide: "慢慢读：gak（收音 ㄱ；先看拼写组合）" },
   { target: "난", guide: "慢慢读：nan（收音 ㄴ；先看拼写组合）" },
+  { target: "맞", guide: "拼写提示：maj；收音 ㅈ 通常听作 [t] 类闭塞，整字近似 mat" },
 ];
 const SpeechRecognitionConstructor = window.SpeechRecognition || window.webkitSpeechRecognition;
 let practiceIndex = -1;
@@ -342,8 +368,8 @@ function buildSelector(items, target, category) {
       renderSelectors();
       const selectorId = category === "consonant"
         ? "#consonant-selector"
-        : category === "vowel" ? "#vowel-selector" : "#final-selector";
-      document.querySelector(`${selectorId} button[data-letter="${item.letter}"]`).focus();
+        : category === "vowel" ? "#vowel-selector" : item.group === "cluster" ? "#advanced-final-selector" : "#final-selector";
+      document.querySelector(`${selectorId} button[data-letter="${item.letter}"]`)?.focus();
       const syllable = updateSyllable();
       if (selectionChanged) speakKorean(syllable, `新音节“${syllable}”`, { auto: true });
     });
@@ -355,7 +381,8 @@ function buildSelector(items, target, category) {
 function renderSelectors() {
   buildSelector(consonants, consonantSelector, "consonant");
   buildSelector(vowels, vowelSelector, "vowel");
-  buildSelector(finalConsonants, finalSelector, "final");
+  buildSelector(finalConsonants.filter((item) => item.group === "common"), finalSelector, "final");
+  buildSelector(finalConsonants.filter((item) => item.group === "cluster"), advancedFinalSelector, "final");
 }
 
 function updateSyllable() {
@@ -376,8 +403,10 @@ function updateSyllable() {
   const onsetTip = selectedConsonant.letter === "ㅇ"
     ? "ㅇ 在开头不发音，所以直接从元音开始读。"
     : `${selectedConsonant.letter} ${selectedConsonant.hint}。`;
+  const heardRoman = finalSoundRomans[selectedFinal.letter];
+  const heardSyllable = heardRoman ? `${romanization.slice(0, -selectedFinal.roman.length)}${heardRoman}` : "";
   const finalTip = selectedFinal.letter
-    ? `收音 ${selectedFinal.letter} 在这里先按拼写记；实际读法会随词而变化。`
+    ? `收音 ${selectedFinal.letter} 的拼写罗马音是 ${selectedFinal.roman}；${selectedFinal.soundHint}${heardSyllable ? `，${syllable} 整体常近似听作 ${heardSyllable}` : ""}。`
     : "这里没有收音。";
   pronunciationTip.innerHTML = `<strong>近似提示：</strong>${onsetTip} ${selectedVowel.letter} ${selectedVowel.hint}；${finalTip} 组合 ${syllable} 的罗马音提示为 ${romanization}，仅作入门参考。`;
   return syllable;
@@ -422,12 +451,19 @@ function createQuiz() {
       explanation: "와 = 初声 ㅇ（开头无声）+ 组合元音 ㅘ。",
       type: "compound-vowel",
     },
+    {
+      prompt: "“맞”（对／没错）的收音是哪一个？",
+      answer: "ㅈ",
+      explanation: "맞 = 初声 ㅁ + 元音 ㅏ + 收音 ㅈ。拼写罗马音可写 maj；收音 ㅈ 通常听作 [t] 类闭塞，整字近似 mat。",
+      type: "final-consonant",
+    },
   ];
   const special = questions.filter((question) => question.type === "special")[0];
   const composition = questions.find((question) => question.type === "composition");
   const compoundVowel = questions.find((question) => question.type === "compound-vowel");
-  const remaining = questions.filter((question) => !["special", "composition", "compound-vowel"].includes(question.type));
-  return shuffle([special, composition, compoundVowel, ...shuffle(remaining).slice(0, 2)]);
+  const finalConsonant = questions.find((question) => question.type === "final-consonant");
+  const remaining = questions.filter((question) => !["special", "composition", "compound-vowel", "final-consonant"].includes(question.type));
+  return shuffle([special, composition, compoundVowel, finalConsonant, ...shuffle(remaining).slice(0, 2)]);
 }
 
 function answerOptions(question) {
@@ -441,6 +477,7 @@ function answerOptions(question) {
   if (question.type === "composition") {
     return shuffle(["ㄱ + ㅏ + ㄱ", "ㄱ + ㅏ", "ㄴ + ㅏ + ㄴ", "ㅇ + ㅏ + ㄱ"]);
   }
+  if (question.type === "final-consonant") return shuffle(["ㅈ", "ㅅ", "ㄷ", "ㄴ"]);
   if (question.type === "compound-vowel") return shuffle(["ㅘ", "ㅗ", "ㅝ", "ㅙ"]);
   return shuffle([question.answer, ...vowels.filter((item) => item.letter !== question.answer).slice(0, 3).map((item) => item.letter)]);
 }

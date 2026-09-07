@@ -6,7 +6,7 @@
     <meta name="description" content="给中文初学者的互动韩语字母与拼读练习。" />
     <meta name="feature-letter-playback" content="enabled" />
     <title>韩语字母起步站</title>
-    <link rel="stylesheet" href="styles.css?v=2026-09-07.6" />
+    <link rel="stylesheet" href="styles.css?v=2026-09-07.8" />
   </head>
   <body>
     <!--
@@ -40,8 +40,9 @@
           <p class="hand-note">先看三块怎样合成一个字；收音读法常会变化，这一页先练拼写组合和听音。</p>
           <a class="text-link" href="#letters">先认识字母 <span aria-hidden="true">↓</span></a>
         </div>
+      </section>
 
-        <section class="syllable-note" aria-labelledby="builder-title">
+      <section class="syllable-note builder-section" aria-labelledby="builder-title">
           <div class="note-title-row">
             <h2 id="builder-title">拼读小桌</h2>
             <p id="selection-status" aria-live="polite">已选：ㄱ、ㅏ、无收音</p>
@@ -65,16 +66,23 @@
           </p>
           <div class="selector-grid">
             <fieldset class="selector-field">
-              <legend>起首辅音</legend>
+              <legend><span aria-hidden="true">1</span> 选初声</legend>
+              <p class="selector-help">选一个起首辅音；<span lang="ko">ㅇ</span> 在开头安静不发音。</p>
               <div id="consonant-selector" class="selector-options"></div>
             </fieldset>
             <fieldset class="selector-field">
-              <legend>元音</legend>
+              <legend><span aria-hidden="true">2</span> 选元音</legend>
+              <p class="selector-help">选元音，和初声合成一个音节块。</p>
               <div id="vowel-selector" class="selector-options"></div>
             </fieldset>
             <fieldset class="selector-field">
-              <legend>收音（可选）</legend>
-              <div id="final-selector" class="selector-options"></div>
+              <legend><span aria-hidden="true">3</span> 选收音（可选）</legend>
+              <div id="final-selector" class="selector-options" aria-label="选择常用单收音"></div>
+              <p class="final-selector-guide">先练单收音。词末常合流为 7 类；<span lang="ko">ㅈ、ㅊ、ㅅ、ㅆ</span> 常听作 [t] 类闭塞。</p>
+            </fieldset>
+            <fieldset class="selector-field advanced-final-selector">
+              <legend>进阶双收音</legend>
+              <div id="advanced-final-selector" class="selector-options" aria-label="选择进阶双收音"></div>
             </fieldset>
           </div>
           <aside class="advanced-final-note" aria-labelledby="advanced-final-title">
@@ -82,7 +90,7 @@
             <p>双收音/复合收音是特定词的固定拼写，不能随意把任意两辅音叠在一起。现代标准拼写有 11 个：<span lang="ko">ㄳ、ㄵ、ㄶ、ㄺ、ㄻ、ㄼ、ㄽ、ㄾ、ㄿ、ㅀ、ㅄ</span>。</p>
             <p>词末或后接辅音时，多数情况下只实现一个代表收音；究竟是哪一个、又怎样影响后面的辅音，要按词学习。后接元音时，其中一个成分常会连读成下一音节初声，但也会受词汇和形态条件影响。</p>
             <p><span lang="ko">앉다</span>（<span lang="ko">ㄵ</span>；常近似听作“안따”）→ <span lang="ko">앉아</span>（近似“安-자”，<span lang="ko">ㅈ</span> 连到后面）；<span lang="ko">읽다</span>（<span lang="ko">ㄺ</span>；常近似听作“익따”）→ <span lang="ko">읽어</span>（近似“일-거”，<span lang="ko">ㄱ</span> 连到后面）。标准读音会随语法成分变化，建议听整词。</p>
-            <p class="advanced-final-status">当前拼读器保留 7 个代表收音；进阶拼写模型已支持，双收音稍后再学。</p>
+            <p class="advanced-final-status">拼读器列出全部标准终声；先从“入门常用单收音”练起，双收音稍后按整词学习。</p>
           </aside>
         </section>
       </section>
@@ -310,6 +318,6 @@
       <span lang="ko">한 글자씩, 한 칸씩.</span>
       <span>一次一格，慢慢就会读。</span>
     </footer>
-    <script src="app.js?v=2026-09-07.6"></script>
+    <script src="app.js?v=2026-09-07.8"></script>
   </body>
 </html>

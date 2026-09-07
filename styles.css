@@ -120,6 +120,7 @@ main {
 }
 
 .intro-spread,
+.builder-section,
 .learning-section,
 .practice-section,
 .quiz-section {
@@ -228,6 +229,10 @@ h3 {
   padding: 1.35rem 1.1rem 1.1rem;
 }
 
+.builder-section {
+  margin: 0 auto 4rem;
+}
+
 .note-title-row,
 .section-heading,
 .quiz-actions {
@@ -325,27 +330,51 @@ output {
 
 .selector-grid {
   display: grid;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .selector-field {
   min-width: 0;
   margin: 0;
-  padding: 0;
+  padding: 1rem 0 0;
   border: 0;
+  border-top: 1px solid var(--line);
+}
+
+.selector-field:first-child {
+  padding-top: 0;
+  border-top: 0;
 }
 
 .selector-field legend {
   margin-bottom: 0.45rem;
   color: #286144;
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 800;
 }
 
+.selector-field legend span {
+  display: inline-grid;
+  width: 1.45rem;
+  height: 1.45rem;
+  margin-right: 0.25rem;
+  place-items: center;
+  color: var(--ink);
+  background: var(--amber);
+  font-size: 0.76rem;
+}
+
+.selector-help {
+  margin: -0.1rem 0 0.65rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
 .selector-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.42rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.55rem;
 }
 
 .selector-button,
@@ -359,9 +388,9 @@ output {
 }
 
 .selector-button {
-  min-width: 2.25rem;
-  min-height: 2.25rem;
-  padding: 0.15rem 0.45rem;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.25rem 0.45rem;
   color: var(--ink);
   background: #fffdf7;
   font-size: 1.2rem;
@@ -372,6 +401,17 @@ output {
 .selector-button[aria-pressed="true"] {
   color: var(--ink);
   background: var(--amber);
+}
+
+.final-selector-guide {
+  margin: 0.45rem 0 0;
+  color: #594934;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.advanced-final-selector {
+  border-top-style: dashed;
 }
 
 .advanced-final-note {
@@ -1072,14 +1112,22 @@ footer {
   }
 
   .intro-spread {
-    grid-template-columns: minmax(0, 0.9fr) minmax(30rem, 1.1fr);
-    align-items: center;
-    min-height: 39rem;
-    padding: 4rem 0 5rem;
+    display: block;
+    min-height: 0;
+    padding: 4rem 0 2.75rem;
   }
 
-  .selector-grid {
-    grid-template-columns: 1.35fr 1fr 0.75fr;
+  .intro-copy {
+    max-width: 46rem;
+  }
+
+  .selector-options {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  .selector-button {
+    min-height: 3.1rem;
   }
 
   .letter-groups {
@@ -1196,6 +1244,15 @@ footer {
 
   .letter-card {
     min-height: 8rem;
+  }
+
+  .selector-options {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.45rem;
+  }
+
+  .selector-button {
+    min-height: 2.75rem;
   }
 }
 
