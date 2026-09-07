@@ -76,6 +76,13 @@
               <div id="final-selector" class="selector-options"></div>
             </fieldset>
           </div>
+          <aside class="advanced-final-note" aria-labelledby="advanced-final-title">
+            <h3 id="advanced-final-title">进阶提示：双收音先按整词学</h3>
+            <p>双收音/复合收音是特定词的固定拼写，不能随意把任意两辅音叠在一起。现代标准拼写有 11 个：<span lang="ko">ㄳ、ㄵ、ㄶ、ㄺ、ㄻ、ㄼ、ㄽ、ㄾ、ㄿ、ㅀ、ㅄ</span>。</p>
+            <p>词末或后接辅音时，多数情况下只实现一个代表收音；究竟是哪一个、又怎样影响后面的辅音，要按词学习。后接元音时，其中一个成分常会连读成下一音节初声，但也会受词汇和形态条件影响。</p>
+            <p><span lang="ko">앉다</span>（<span lang="ko">ㄵ</span>；常近似听作“안따”）→ <span lang="ko">앉아</span>（近似“安-자”，<span lang="ko">ㅈ</span> 连到后面）；<span lang="ko">읽다</span>（<span lang="ko">ㄺ</span>；常近似听作“익따”）→ <span lang="ko">읽어</span>（近似“일-거”，<span lang="ko">ㄱ</span> 连到后面）。标准读音会随语法成分变化，建议听整词。</p>
+            <p class="advanced-final-status">当前拼读器保留 7 个代表收音；进阶拼写模型已支持，双收音稍后再学。</p>
+          </aside>
         </section>
       </section>
 
@@ -123,26 +130,27 @@
             <p>这是真实发音位置的入门提示，不是字形小联想。</p>
           </div>
           <p class="design-map-intro">《训民正音解例》以发音器官的形状说明五个基本辅音。先感受口腔的位置，再把罗马音和中文近似当作辅助。</p>
+          <p class="mouth-direction" aria-label="口腔侧视图方位：左边是嘴前和牙齿，右边是喉咙和嘴后"><span aria-hidden="true">←</span> 嘴前／牙齿 <span aria-hidden="true">·</span> 喉咙／嘴后 <span aria-hidden="true">→</span></p>
           <div class="position-grid">
             <article class="position-note">
-              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false"><path d="M18 40q20-28 65-20 17 4 22 20-9 22-33 22H35q-12-4-17-22Z" /><path d="M43 47q15-15 38-6" /><circle cx="82" cy="40" r="4" /></svg>
-              <div><strong lang="ko">ㄱ</strong><p>舌根抵住软腭附近的口腔后部。</p></div>
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false"><path d="M19 39q13-23 48-24 25 0 37 19-7 11-4 23-24 10-59 5-16-4-22-23Z" /><path d="M31 54q23-12 48-13 5-1 8-8" /><path d="M80 32q7 0 10 7" /><circle cx="88" cy="39" r="4" /></svg>
+              <div><strong lang="ko">ㄱ</strong><p>舌根在右侧，接近软腭附近的口腔后部。</p></div>
             </article>
             <article class="position-note">
-              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false"><path d="M18 40q20-28 65-20 17 4 22 20-9 22-33 22H35q-12-4-17-22Z" /><path d="M42 49q18-16 35-18" /><path d="M75 28v13" /></svg>
-              <div><strong lang="ko">ㄴ</strong><p>舌尖轻触上齿龈的位置。</p></div>
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false"><path d="M19 39q13-23 48-24 25 0 37 19-7 11-4 23-24 10-59 5-16-4-22-23Z" /><path d="M78 53q-25-3-39-16-4-3-9-1" /><path d="M31 29v12M37 28v12" /><circle cx="30" cy="39" r="4" /></svg>
+              <div><strong lang="ko">ㄴ</strong><p>舌尖在左侧，轻触上齿龈的口腔前部。</p></div>
             </article>
             <article class="position-note">
-              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false"><path d="M28 32q32-17 64 0M28 48q32 17 64 0" /><path d="M38 40h44" /></svg>
-              <div><strong lang="ko">ㅁ</strong><p>双唇合上；声音可从鼻腔出来。</p></div>
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false"><path d="M19 39q13-23 48-24 25 0 37 19-7 11-4 23-24 10-59 5-16-4-22-23Z" /><path d="M18 35h15M18 43h15" /><path d="M34 40h39" /></svg>
+              <div><strong lang="ko">ㅁ</strong><p>左侧双唇合上；声音可从鼻腔出来。</p></div>
             </article>
             <article class="position-note">
-              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false"><path d="M25 27h70M25 39h70" /><path d="m43 56 9-11 9 11 9-11 9 11" /></svg>
-              <div><strong lang="ko">ㅅ</strong><p>气流从牙齿附近穿过。</p></div>
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false"><path d="M19 39q13-23 48-24 25 0 37 19-7 11-4 23-24 10-59 5-16-4-22-23Z" /><path d="M30 29v12M37 28v13" /><path d="m43 47 8-7 8 7 8-7 8 7" /></svg>
+              <div><strong lang="ko">ㅅ</strong><p>左侧牙齿附近留出气流通道。</p></div>
             </article>
             <article class="position-note">
-              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false"><path d="M28 18q-13 23 0 44 12 13 31 6" /><path d="M55 29q18 12 0 27" /><circle cx="57" cy="42" r="5" /></svg>
-              <div><strong lang="ko">ㅇ</strong><p>关联喉咙；但放在初声位置时安静不发音。</p></div>
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false"><path d="M19 39q13-23 48-24 25 0 37 19-7 11-4 23-24 10-59 5-16-4-22-23Z" /><path d="M79 29q12 10 0 23" /><circle cx="81" cy="41" r="5" /></svg>
+              <div><strong lang="ko">ㅇ</strong><p>右侧关联喉咙；但初声位置安静不发音。</p></div>
             </article>
           </div>
         </section>

@@ -374,6 +374,36 @@ output {
   background: var(--amber);
 }
 
+.advanced-final-note {
+  margin-top: 1.25rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px dashed var(--line);
+  background: #fffdf7;
+}
+
+.advanced-final-note h3 {
+  margin: 0 0 0.35rem;
+  color: #286144;
+  font-size: 0.88rem;
+}
+
+.advanced-final-note p {
+  margin: 0.45rem 0;
+  color: #594934;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.advanced-final-note [lang="ko"] {
+  color: #286144;
+  font-weight: 900;
+}
+
+.advanced-final-status {
+  color: #87580f !important;
+  font-weight: 800;
+}
+
 .learning-section {
   padding: 4rem 0;
 }
@@ -691,6 +721,17 @@ progress {
   margin: 0 0 1rem;
   color: #594934;
   line-height: 1.5;
+}
+
+.mouth-direction {
+  width: fit-content;
+  margin: 0 0 1rem;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #d7c5a4;
+  color: #286144;
+  background: #f5e5c4;
+  font-size: 0.78rem;
+  font-weight: 800;
 }
 
 .position-grid {
