@@ -173,6 +173,7 @@ const storageStatus = document.querySelector("#storage-status");
 const practiceTarget = document.querySelector("#practice-target");
 const practiceGuide = document.querySelector("#practice-guide");
 const practiceAlternativeTarget = document.querySelector("#practice-alternative-target");
+const practiceJudgement = document.querySelector("#practice-judgement");
 const startListeningButton = document.querySelector("#start-listening");
 const stopListeningButton = document.querySelector("#stop-listening");
 const retryListeningButton = document.querySelector("#retry-listening");
@@ -194,33 +195,33 @@ let quizIndex = 0;
 let score = 0;
 let questionAnswered = false;
 const practicePrompts = [
-  { target: "가", guide: "慢慢读：ga" },
-  { target: "까", guide: "慢慢读：kka（紧音，不是两个“ㄱ”）" },
-  { target: "나", guide: "慢慢读：na" },
-  { target: "다", guide: "慢慢读：da" },
-  { target: "따", guide: "慢慢读：tta（紧音，不是两个“ㄷ”）" },
-  { target: "라", guide: "慢慢读：ra" },
-  { target: "마", guide: "慢慢读：ma" },
-  { target: "바", guide: "慢慢读：ba" },
-  { target: "빠", guide: "慢慢读：ppa（紧音，不是两个“ㅂ”）" },
-  { target: "사", guide: "慢慢读：sa" },
-  { target: "싸", guide: "慢慢读：ssa（紧音，不是两个“ㅅ”）" },
-  { target: "아", guide: "慢慢读：a（开头的 ㅇ 不发音）" },
-  { target: "자", guide: "慢慢读：ja" },
-  { target: "짜", guide: "慢慢读：jja（紧音，不是两个“ㅈ”）" },
-  { target: "차", guide: "慢慢读：cha" },
-  { target: "카", guide: "慢慢读：ka" },
-  { target: "타", guide: "慢慢读：ta" },
-  { target: "파", guide: "慢慢读：pa" },
-  { target: "하", guide: "慢慢读：ha" },
-  { target: "너", guide: "慢慢读：neo" },
-  { target: "모", guide: "慢慢读：mo" },
-  { target: "수", guide: "慢慢读：su" },
-  { target: "이", guide: "慢慢读：i" },
-  { target: "와", guide: "慢慢读：wa（组合元音 ㅘ）" },
-  { target: "각", guide: "慢慢读：gak（收音 ㄱ；先看拼写组合）" },
-  { target: "난", guide: "慢慢读：nan（收音 ㄴ；先看拼写组合）" },
-  { target: "맞", guide: "拼写提示：maj；收音 ㅈ 通常听作 [t] 类闭塞，整字近似 mat" },
+  practiceSyllable("가", "慢慢读：ga"),
+  practiceSyllable("까", "慢慢读：kka（紧音，不是两个“ㄱ”）"),
+  practiceSyllable("나", "慢慢读：na"),
+  practiceSyllable("다", "慢慢读：da"),
+  practiceSyllable("따", "慢慢读：tta（紧音，不是两个“ㄷ”）"),
+  practiceSyllable("라", "慢慢读：ra"),
+  practiceSyllable("마", "慢慢读：ma"),
+  practiceSyllable("바", "慢慢读：ba"),
+  practiceSyllable("빠", "慢慢读：ppa（紧音，不是两个“ㅂ”）"),
+  practiceSyllable("사", "慢慢读：sa"),
+  practiceSyllable("싸", "慢慢读：ssa（紧音，不是两个“ㅅ”）"),
+  practiceSyllable("아", "慢慢读：a（开头的 ㅇ 不发音）"),
+  practiceSyllable("자", "慢慢读：ja"),
+  practiceSyllable("짜", "慢慢读：jja（紧音，不是两个“ㅈ”）"),
+  practiceSyllable("차", "慢慢读：cha"),
+  practiceSyllable("카", "慢慢读：ka"),
+  practiceSyllable("타", "慢慢读：ta"),
+  practiceSyllable("파", "慢慢读：pa"),
+  practiceSyllable("하", "慢慢读：ha"),
+  practiceSyllable("너", "慢慢读：neo"),
+  practiceSyllable("모", "慢慢读：mo"),
+  practiceSyllable("수", "慢慢读：su"),
+  practiceSyllable("이", "慢慢读：i"),
+  practiceSyllable("와", "慢慢读：wa（组合元音 ㅘ）"),
+  practiceSyllable("각", "慢慢读：gak（收音 ㄱ；先看拼写组合）"),
+  practiceSyllable("난", "慢慢读：nan（收音 ㄴ；先看拼写组合）"),
+  practiceSyllable("맞", "拼写提示：maj；收音 ㅈ 通常听作 [t] 类闭塞，整字近似 mat"),
 ];
 const SpeechRecognitionConstructor = window.SpeechRecognition || window.webkitSpeechRecognition;
 let practiceIndex = -1;
@@ -560,7 +561,23 @@ function restartQuiz() {
 }
 
 function normalizeTranscript(value) {
-  return value.normalize("NFC").replace(/[\s\p{P}\p{S}]/gu, "");
+  return value.normalize("NFC").replace(/[\s\p{P}\p{S}\u200B-\u200D\uFEFF]/gu, "");
+}
+
+function practiceSyllable(display, guide, acceptedTranscripts = [display]) {
+  return { display, spokenTarget: display, acceptedTranscripts, guide };
+}
+
+function getPracticePrompt() {
+  return practicePrompts[practiceIndex];
+}
+
+function isPracticeMatch(transcripts, prompt) {
+  const accepted = [prompt.spokenTarget, ...prompt.acceptedTranscripts].map(normalizeTranscript);
+  return transcripts.some((transcript) => {
+    const normalized = normalizeTranscript(transcript);
+    return accepted.some((expected) => normalized.includes(expected));
+  });
 }
 
 function setRecognitionControls() {
@@ -597,7 +614,7 @@ function createRecognition() {
   recognition.lang = "ko-KR";
   recognition.continuous = false;
   recognition.interimResults = false;
-  recognition.maxAlternatives = 3;
+  recognition.maxAlternatives = 5;
 
   recognition.onstart = () => {
     recognitionState = "listening";
@@ -607,20 +624,20 @@ function createRecognition() {
   };
 
   recognition.onresult = (event) => {
-    const finalTranscript = [...event.results]
+    const finalTranscripts = [...event.results]
       .filter((result) => result.isFinal)
-      .map((result) => result[0].transcript)
-      .join(" ")
-      .trim();
-    if (!finalTranscript) return;
+      .flatMap((result) => Array.from(result, (alternative) => alternative.transcript.trim()))
+      .filter(Boolean);
+    if (!finalTranscripts.length) return;
 
     recognitionState = "complete";
-    speechResult.textContent = finalTranscript;
-    const target = practicePrompts[practiceIndex].target;
-    const isMatch = normalizeTranscript(finalTranscript).includes(normalizeTranscript(target));
+    const transcriptSummary = finalTranscripts.join(" ／ ");
+    speechResult.textContent = transcriptSummary;
+    const prompt = getPracticePrompt();
+    const isMatch = isPracticeMatch(finalTranscripts, prompt);
     setRecognitionFeedback(isMatch
-      ? `识别到“${finalTranscript}”。找到了“${target}”，这次算你读对。`
-      : `识别到“${finalTranscript}”，还没有找到“${target}”。识别不一定准确，慢一点再试一次也没关系。`);
+      ? `识别到“${transcriptSummary}”。本次按“${prompt.spokenTarget}”判断，找到了目标，这次算你读对。`
+      : `识别到“${transcriptSummary}”。本次按“${prompt.spokenTarget}”判断，尚未匹配目标；识别不一定准确，慢一点再试一次也没关系。`);
     setRecognitionControls();
   };
 
@@ -713,12 +730,13 @@ function stopListening() {
 
 function updatePracticeTarget() {
   practiceIndex = (practiceIndex + 1) % practicePrompts.length;
-  const prompt = practicePrompts[practiceIndex];
-  practiceTarget.textContent = prompt.target;
+  const prompt = getPracticePrompt();
+  practiceTarget.textContent = prompt.display;
   practiceGuide.textContent = prompt.guide;
-  practiceAlternativeTarget.textContent = prompt.target;
+  practiceAlternativeTarget.textContent = prompt.spokenTarget;
+  practiceJudgement.textContent = `本次按“${prompt.spokenTarget}”判断：识别文字包含这个完整音节即可。`;
   speechResult.textContent = "还没有文字";
-  setRecognitionFeedback(`新的练习是“${prompt.target}”。可以听一听、跟读，或直接默读三遍。`);
+  setRecognitionFeedback(`新的练习是“${prompt.display}”。可以听一听、跟读，或直接默读三遍。`);
 }
 
 function initializeRecognition() {
@@ -783,8 +801,8 @@ function speakKorean(text, description, { auto = false } = {}) {
 }
 
 function playPronunciation() {
-  const target = practicePrompts[practiceIndex].target;
-  speakKorean(target, `练习“${target}”`);
+  const prompt = getPracticePrompt();
+  speakKorean(prompt.spokenTarget, `练习“${prompt.spokenTarget}”`);
 }
 
 document.querySelector("#reset-progress").addEventListener("click", () => {

@@ -6,7 +6,7 @@
     <meta name="description" content="给中文初学者的互动韩语字母与拼读练习。" />
     <meta name="feature-letter-playback" content="enabled" />
     <title>韩语字母起步站</title>
-    <link rel="stylesheet" href="styles.css?v=2026-09-07.8" />
+    <link rel="stylesheet" href="styles.css?v=2026-09-07.9" />
   </head>
   <body>
     <!--
@@ -282,11 +282,12 @@
             <button class="primary-button" id="start-listening" type="button" aria-label="开始韩语跟读检测">开始跟读</button>
             <button class="quiet-button" id="stop-listening" type="button" disabled>停止</button>
             <button class="quiet-button" id="retry-listening" type="button" disabled>再试一次</button>
-            <button class="quiet-button" id="new-practice" type="button">换一个练习</button>
+            <button class="quiet-button" id="new-practice" type="button">换一个易识别音节</button>
           </div>
           <p class="speech-support" id="speech-support" role="status">正在检查浏览器的语音识别支持情况…</p>
           <p class="speech-synthesis-status" id="speech-synthesis-status" role="status">正在检查韩语朗读支持情况…</p>
           <p class="speech-result"><strong>识别到：</strong><span id="speech-result">还没有文字</span></p>
+          <p class="practice-judgement" id="practice-judgement">本次按“가”判断：识别文字包含这个完整音节即可。</p>
           <p class="speech-feedback" id="speech-feedback" aria-live="polite"></p>
           <p class="practice-alternative">不想用语音？看着 <span id="practice-alternative-target" lang="ko">가</span>，默读三遍，再回到拼读小桌组合新的音节。</p>
         </section>
@@ -318,6 +319,6 @@
       <span lang="ko">한 글자씩, 한 칸씩.</span>
       <span>一次一格，慢慢就会读。</span>
     </footer>
-    <script src="app.js?v=2026-09-07.8"></script>
+    <script src="app.js?v=2026-09-07.9"></script>
   </body>
 </html>

@@ -984,6 +984,7 @@ progress {
 .speech-support,
 .speech-synthesis-status,
 .speech-result,
+.practice-judgement,
 .speech-feedback,
 .practice-alternative {
   margin: 0.7rem 0;
@@ -997,6 +998,12 @@ progress {
 
 .speech-result strong {
   color: #286144;
+}
+
+.practice-judgement {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.45;
 }
 
 .speech-feedback {
