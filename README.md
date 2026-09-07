@@ -40,6 +40,6 @@ python3 -m http.server 8000
 
 ## GitHub Pages
 
-仓库已包含 GitHub Actions 工作流。推送到 `justinchuby-hangul-learning-page` 分支会将仓库根目录的静态文件部署到 GitHub Pages；也可在 Actions 页面手动运行 **Deploy GitHub Pages**。预期访问地址为 <https://justinchuby.github.io/hangul-starter/>。
+仓库已包含 GitHub Actions 工作流。推送到生产分支 `main` 会将仓库根目录的静态文件部署到 GitHub Pages；也可在 Actions 页面手动运行 **Deploy GitHub Pages**。预期访问地址为 <https://justinchuby.github.io/hangul-starter/>。
 
-部署作业使用 GitHub 官方的 `github-pages` 环境。若该环境配置了部署分支限制，请在 **Settings → Environments → github-pages → Deployment branches** 中允许 `justinchuby-hangul-learning-page`（或调整为项目所需策略）；否则 GitHub 会在运行任何工作流步骤前拒绝部署。
+部署作业使用 GitHub 官方的 `github-pages` 环境。若该环境配置了部署分支限制，请在 **Settings → Environments → github-pages → Deployment branches** 中允许 `main`（或调整为项目所需策略）；否则 GitHub 会在运行任何工作流步骤前拒绝部署。
