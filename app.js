@@ -1,37 +1,55 @@
 const consonants = [
-  { letter: "ㄱ", roman: "g", hint: "起音介于“g / k”之间，先按“g”记" },
-  { letter: "ㄲ", roman: "kk", hint: "紧音；喉部更紧、没有额外送气，不是重复读两个“ㄱ”" },
-  { letter: "ㄴ", roman: "n", hint: "接近“n”，舌尖轻触上齿龈" },
-  { letter: "ㄷ", roman: "d", hint: "起音介于“d / t”之间，先按“d”记" },
-  { letter: "ㄸ", roman: "tt", hint: "紧音；比 ㄷ 更紧、更短，不是重复读两个“ㄷ”" },
-  { letter: "ㄹ", roman: "r", hint: "在元音前常近似轻弹的“r”" },
-  { letter: "ㅁ", roman: "m", hint: "接近“m”" },
-  { letter: "ㅂ", roman: "b", hint: "起音介于“b / p”之间，先按“b”记" },
-  { letter: "ㅃ", roman: "pp", hint: "紧音；比 ㅂ 更紧、更短，不是重复读两个“ㅂ”" },
-  { letter: "ㅅ", roman: "s", hint: "接近“s”；遇 ㅣ 时更像“sh”" },
-  { letter: "ㅆ", roman: "ss", hint: "紧音；比 ㅅ 更紧、更清晰，不是重复读两个“ㅅ”" },
-  { letter: "ㅇ", roman: "", hint: "放在音节开头时不发音，像一个安静的座位" },
-  { letter: "ㅈ", roman: "j", hint: "接近“j”，不是普通汉语拼音的“z”" },
-  { letter: "ㅉ", roman: "jj", hint: "紧音；比 ㅈ 更紧、更短，不是重复读两个“ㅈ”" },
-  { letter: "ㅊ", roman: "ch", hint: "接近“ch”，送气更明显" },
-  { letter: "ㅋ", roman: "k", hint: "接近送气的“k”，比 ㄱ 气流更明显" },
-  { letter: "ㅌ", roman: "t", hint: "接近送气的“t”，比 ㄷ 气流更明显" },
-  { letter: "ㅍ", roman: "p", hint: "接近送气的“p”，比 ㅂ 气流更明显" },
-  { letter: "ㅎ", roman: "h", hint: "接近轻轻送气的“h”" },
+  { letter: "ㄱ", roman: "g", hint: "舌根抵住口腔后部；近似提示 g/k" },
+  { letter: "ㄲ", roman: "kk", hint: "现代紧音；口腔后部更紧，不是重复读两个“ㄱ”" },
+  { letter: "ㄴ", roman: "n", hint: "舌尖轻触上齿龈；近似提示 n" },
+  { letter: "ㄷ", roman: "d", hint: "舌尖碰上齿龈；近似提示 d/t" },
+  { letter: "ㄸ", roman: "tt", hint: "现代紧音；舌尖位置更紧、更短，不是重复读两个“ㄷ”" },
+  { letter: "ㄹ", roman: "r", hint: "舌尖在齿龈附近轻弹；近似提示 r" },
+  { letter: "ㅁ", roman: "m", hint: "双唇合上，让声音从鼻腔出来；近似提示 m" },
+  { letter: "ㅂ", roman: "b", hint: "双唇先合再打开；近似提示 b/p" },
+  { letter: "ㅃ", roman: "pp", hint: "现代紧音；双唇更紧、更短，不是重复读两个“ㅂ”" },
+  { letter: "ㅅ", roman: "s", hint: "气流从牙齿附近穿过；近似提示 s" },
+  { letter: "ㅆ", roman: "ss", hint: "现代紧音；牙齿附近气流更紧，不是重复读两个“ㅅ”" },
+  { letter: "ㅇ", roman: "", hint: "开头时喉部安静不发音；收音时才表示 ng" },
+  { letter: "ㅈ", roman: "j", hint: "由 ㅅ 加笔的字形关系；近似提示 j" },
+  { letter: "ㅉ", roman: "jj", hint: "现代紧音；比 ㅈ 更紧、更短，不是重复读两个“ㅈ”" },
+  { letter: "ㅊ", roman: "ch", hint: "由 ㅈ 再加笔；送气更明显，近似提示 ch" },
+  { letter: "ㅋ", roman: "k", hint: "由 ㄱ 加笔；送气更明显，近似提示 k" },
+  { letter: "ㅌ", roman: "t", hint: "由 ㄷ 加笔；送气更明显，近似提示 t" },
+  { letter: "ㅍ", roman: "p", hint: "由 ㅂ 加笔；送气更明显，近似提示 p" },
+  { letter: "ㅎ", roman: "h", hint: "喉部呼气；近似提示 h" },
 ];
 
 const vowels = [
   { letter: "ㅏ", roman: "a", hint: "近似“啊”" },
+  { letter: "ㅐ", roman: "ae", hint: "初学先按“ae”拼写区分；现代实际读音常接近 ㅔ" },
+  { letter: "ㅑ", roman: "ya", hint: "接近“呀”的起音" },
+  { letter: "ㅒ", roman: "yae", hint: "初学先按“yae”拼写区分；现代实际读音常接近 ㅖ" },
   { letter: "ㅓ", roman: "eo", hint: "嘴微张，介于“哦 / 啊”之间" },
+  { letter: "ㅔ", roman: "e", hint: "初学先按“e”拼写区分；现代实际读音常接近 ㅐ" },
+  { letter: "ㅕ", roman: "yeo", hint: "接近“哟”的起音，但不是普通汉语拼音 yo" },
+  { letter: "ㅖ", roman: "ye", hint: "接近“耶”的起音；初学先按拼写区分" },
   { letter: "ㅗ", roman: "o", hint: "接近“哦”，嘴唇略圆" },
+  { letter: "ㅘ", roman: "wa", hint: "接近“哇”的起音" },
+  { letter: "ㅙ", roman: "wae", hint: "初学先按“wae”拼写区分" },
+  { letter: "ㅚ", roman: "oe", hint: "初学先按“oe”拼写区分；现代实际读音可能接近其他组合元音" },
+  { letter: "ㅛ", roman: "yo", hint: "接近“哟”的起音" },
   { letter: "ㅜ", roman: "u", hint: "接近“乌”" },
+  { letter: "ㅝ", roman: "wo", hint: "接近“窝”的圆唇起音" },
+  { letter: "ㅞ", roman: "we", hint: "初学先按“we”拼写区分" },
+  { letter: "ㅟ", roman: "wi", hint: "接近“wi”的连读起音" },
+  { letter: "ㅠ", roman: "yu", hint: "接近“yu”的起音" },
   { letter: "ㅡ", roman: "eu", hint: "扁平放松地发，中文没有完全对应音" },
+  { letter: "ㅢ", roman: "ui", hint: "初学先按“ui”看；实际读法会随位置变化" },
   { letter: "ㅣ", roman: "i", hint: "接近“衣”" },
 ];
 
 const tenseConsonantLetters = new Set(["ㄲ", "ㄸ", "ㅃ", "ㅆ", "ㅉ"]);
+const compoundVowelLetters = new Set(["ㅐ", "ㅒ", "ㅔ", "ㅖ", "ㅘ", "ㅙ", "ㅚ", "ㅝ", "ㅞ", "ㅟ", "ㅢ"]);
 const baseConsonants = consonants.filter((item) => !tenseConsonantLetters.has(item.letter));
 const tenseConsonants = consonants.filter((item) => tenseConsonantLetters.has(item.letter));
+const baseVowels = vowels.filter((item) => !compoundVowelLetters.has(item.letter));
+const compoundVowels = vowels.filter((item) => compoundVowelLetters.has(item.letter));
 const syllableBase = 0xac00;
 const learnedStorageKey = "hangul-starter-learned";
 const hangulInitialIndexes = {
@@ -57,19 +75,53 @@ const hangulInitialIndexes = {
 };
 const hangulVowelIndexes = {
   "ㅏ": 0,
+  "ㅐ": 1,
+  "ㅑ": 2,
+  "ㅒ": 3,
   "ㅓ": 4,
+  "ㅔ": 5,
+  "ㅕ": 6,
+  "ㅖ": 7,
   "ㅗ": 8,
+  "ㅘ": 9,
+  "ㅙ": 10,
+  "ㅚ": 11,
+  "ㅛ": 12,
   "ㅜ": 13,
+  "ㅝ": 14,
+  "ㅞ": 15,
+  "ㅟ": 16,
+  "ㅠ": 17,
   "ㅡ": 18,
+  "ㅢ": 19,
   "ㅣ": 20,
 };
+const hangulFinalIndexes = {
+  "": 0, "ㄱ": 1, "ㄲ": 2, "ㄳ": 3, "ㄴ": 4, "ㄵ": 5, "ㄶ": 6, "ㄷ": 7,
+  "ㄹ": 8, "ㄺ": 9, "ㄻ": 10, "ㄼ": 11, "ㄽ": 12, "ㄾ": 13, "ㄿ": 14, "ㅀ": 15,
+  "ㅁ": 16, "ㅂ": 17, "ㅄ": 18, "ㅅ": 19, "ㅆ": 20, "ㅇ": 21, "ㅈ": 22, "ㅊ": 23,
+  "ㅋ": 24, "ㅌ": 25, "ㅍ": 26, "ㅎ": 27,
+};
+const finalConsonants = [
+  { letter: "", label: "无", roman: "", hint: "不加收音" },
+  { letter: "ㄱ", label: "ㄱ", roman: "k", hint: "代表收音" },
+  { letter: "ㄴ", label: "ㄴ", roman: "n", hint: "代表收音" },
+  { letter: "ㄷ", label: "ㄷ", roman: "t", hint: "代表收音" },
+  { letter: "ㄹ", label: "ㄹ", roman: "l", hint: "代表收音" },
+  { letter: "ㅁ", label: "ㅁ", roman: "m", hint: "代表收音" },
+  { letter: "ㅂ", label: "ㅂ", roman: "p", hint: "代表收音" },
+  { letter: "ㅇ", label: "ㅇ", roman: "ng", hint: "代表收音" },
+];
 const baseConsonantCards = document.querySelector("#base-consonant-cards");
 const tenseConsonantCards = document.querySelector("#tense-consonant-cards");
-const vowelCards = document.querySelector("#vowel-cards");
+const baseVowelCards = document.querySelector("#base-vowel-cards");
+const compoundVowelCards = document.querySelector("#compound-vowel-cards");
 const consonantSelector = document.querySelector("#consonant-selector");
 const vowelSelector = document.querySelector("#vowel-selector");
+const finalSelector = document.querySelector("#final-selector");
 const syllableOutput = document.querySelector("#syllable");
 const romanizationOutput = document.querySelector("#romanization");
+const finalConsonantOutput = document.querySelector("#final-consonant");
 const pronunciationTip = document.querySelector("#pronunciation-tip");
 const selectionStatus = document.querySelector("#selection-status");
 const progressCount = document.querySelector("#progress-count");
@@ -91,6 +143,7 @@ const speechFeedback = document.querySelector("#speech-feedback");
 
 let selectedConsonant = consonants[0];
 let selectedVowel = vowels[0];
+let selectedFinal = finalConsonants[0];
 let learnedLetters = new Set(loadLearnedLetters());
 let quiz = [];
 let quizIndex = 0;
@@ -120,6 +173,9 @@ const practicePrompts = [
   { target: "모", guide: "慢慢读：mo" },
   { target: "수", guide: "慢慢读：su" },
   { target: "이", guide: "慢慢读：i" },
+  { target: "와", guide: "慢慢读：wa（组合元音 ㅘ）" },
+  { target: "각", guide: "慢慢读：gak（收音 ㄱ；先看拼写组合）" },
+  { target: "난", guide: "慢慢读：nan（收音 ㄴ；先看拼写组合）" },
 ];
 const SpeechRecognitionConstructor = window.SpeechRecognition || window.webkitSpeechRecognition;
 let practiceIndex = -1;
@@ -143,15 +199,16 @@ function saveLearnedLetters() {
   localStorage.setItem(learnedStorageKey, JSON.stringify([...learnedLetters]));
 }
 
-function makeSyllable(consonant, vowel) {
+function makeSyllable(consonant, vowel, final = selectedFinal) {
   const consonantIndex = hangulInitialIndexes[consonant.letter];
   const vowelIndex = hangulVowelIndexes[vowel.letter];
-  return String.fromCharCode(syllableBase + (consonantIndex * 21 + vowelIndex) * 28);
+  const finalIndex = hangulFinalIndexes[final.letter];
+  return String.fromCharCode(syllableBase + ((consonantIndex * 21 + vowelIndex) * 28) + finalIndex);
 }
 
-function romanize(consonant, vowel) {
-  if (consonant.letter === "ㅅ" && vowel.letter === "ㅣ") return "shi";
-  return `${consonant.roman}${vowel.roman}`;
+function romanize(consonant, vowel, final = selectedFinal) {
+  const onset = consonant.letter === "ㅅ" && vowel.letter === "ㅣ" ? "sh" : consonant.roman;
+  return `${onset}${vowel.roman}${final.roman}`;
 }
 
 function buildLetterCard(item, type) {
@@ -165,7 +222,7 @@ function buildLetterCard(item, type) {
   card.innerHTML = `
     <span class="letter-symbol" lang="ko">${item.letter}</span>
     <span class="letter-meta">
-      <b>${item.roman || "起首无声"}</b>
+      <b>近似：${item.roman || "起首无声"}</b>
       <span>${item.hint}</span>
     </span>
   `;
@@ -176,7 +233,8 @@ function buildLetterCard(item, type) {
 function renderLetterCards() {
   baseConsonantCards.replaceChildren(...baseConsonants.map((item) => buildLetterCard(item, "consonant")));
   tenseConsonantCards.replaceChildren(...tenseConsonants.map((item) => buildLetterCard(item, "tense")));
-  vowelCards.replaceChildren(...vowels.map((item) => buildLetterCard(item, "vowel")));
+  baseVowelCards.replaceChildren(...baseVowels.map((item) => buildLetterCard(item, "vowel")));
+  compoundVowelCards.replaceChildren(...compoundVowels.map((item) => buildLetterCard(item, "vowel")));
 }
 
 function toggleLearned(letter) {
@@ -195,6 +253,7 @@ function updateProgress(changedLetter) {
   const current = learnedLetters.size;
   progressCount.textContent = `${current} / ${total}`;
   headerProgress.textContent = `已学 ${current} / ${total}`;
+  learningProgress.max = total;
   learningProgress.value = current;
   if (!changedLetter) {
     progressStatus.textContent = "";
@@ -210,17 +269,25 @@ function buildSelector(items, target, category) {
     button.type = "button";
     button.className = "selector-button";
     button.dataset.letter = item.letter;
-    button.textContent = item.letter;
+    button.textContent = item.label || item.letter;
     button.setAttribute("lang", "ko");
     button.setAttribute("aria-pressed", String(
-      category === "consonant" ? item.letter === selectedConsonant.letter : item.letter === selectedVowel.letter,
+      category === "consonant"
+        ? item.letter === selectedConsonant.letter
+        : category === "vowel"
+          ? item.letter === selectedVowel.letter
+          : item.letter === selectedFinal.letter,
     ));
-    button.setAttribute("aria-label", `${category === "consonant" ? "选择辅音" : "选择元音"} ${item.letter}`);
+    const categoryName = category === "consonant" ? "初声" : category === "vowel" ? "元音" : "收音";
+    button.setAttribute("aria-label", `选择${categoryName} ${item.label || item.letter || "无收音"}`);
     button.addEventListener("click", () => {
       if (category === "consonant") selectedConsonant = item;
-      else selectedVowel = item;
+      else if (category === "vowel") selectedVowel = item;
+      else selectedFinal = item;
       renderSelectors();
-      const selectorId = category === "consonant" ? "#consonant-selector" : "#vowel-selector";
+      const selectorId = category === "consonant"
+        ? "#consonant-selector"
+        : category === "vowel" ? "#vowel-selector" : "#final-selector";
       document.querySelector(`${selectorId} button[data-letter="${item.letter}"]`).focus();
       updateSyllable();
     });
@@ -232,24 +299,31 @@ function buildSelector(items, target, category) {
 function renderSelectors() {
   buildSelector(consonants, consonantSelector, "consonant");
   buildSelector(vowels, vowelSelector, "vowel");
+  buildSelector(finalConsonants, finalSelector, "final");
 }
 
 function updateSyllable() {
-  const syllable = makeSyllable(selectedConsonant, selectedVowel);
-  const romanization = romanize(selectedConsonant, selectedVowel);
+  const syllable = makeSyllable(selectedConsonant, selectedVowel, selectedFinal);
+  const romanization = romanize(selectedConsonant, selectedVowel, selectedFinal);
   syllableOutput.textContent = syllable;
   romanizationOutput.textContent = romanization;
+  finalConsonantOutput.textContent = selectedFinal.label || selectedFinal.letter || "无";
   syllableOutput.classList.remove("note-change");
   romanizationOutput.classList.remove("note-change");
+  finalConsonantOutput.classList.remove("note-change");
   void syllableOutput.offsetWidth;
   syllableOutput.classList.add("note-change");
   romanizationOutput.classList.add("note-change");
-  selectionStatus.textContent = `已选：${selectedConsonant.letter} 与 ${selectedVowel.letter}`;
+  finalConsonantOutput.classList.add("note-change");
+  selectionStatus.textContent = `已选：${selectedConsonant.letter}、${selectedVowel.letter}、${selectedFinal.label || selectedFinal.letter || "无收音"}`;
 
   const onsetTip = selectedConsonant.letter === "ㅇ"
     ? "ㅇ 在开头不发音，所以直接从元音开始读。"
     : `${selectedConsonant.letter} ${selectedConsonant.hint}。`;
-  pronunciationTip.innerHTML = `<strong>中文提示：</strong>${onsetTip} ${selectedVowel.letter} ${selectedVowel.hint}；组合 ${syllable} 读作 ${romanization}，仅作近似参考。`;
+  const finalTip = selectedFinal.letter
+    ? `收音 ${selectedFinal.letter} 在这里先按拼写记；实际读法会随词而变化。`
+    : "这里没有收音。";
+  pronunciationTip.innerHTML = `<strong>近似提示：</strong>${onsetTip} ${selectedVowel.letter} ${selectedVowel.hint}；${finalTip} 组合 ${syllable} 的罗马音提示为 ${romanization}，仅作入门参考。`;
 }
 
 function shuffle(items) {
@@ -279,9 +353,24 @@ function createQuiz() {
       type: "vowel",
       item,
     })),
+    {
+      prompt: "“각”由哪三部分组成？",
+      answer: "ㄱ + ㅏ + ㄱ",
+      explanation: "각 = 初声 ㄱ + 元音 ㅏ + 收音 ㄱ。",
+      type: "composition",
+    },
+    {
+      prompt: "“와”里的组合元音是哪一个？",
+      answer: "ㅘ",
+      explanation: "와 = 初声 ㅇ（开头无声）+ 组合元音 ㅘ。",
+      type: "compound-vowel",
+    },
   ];
   const special = questions.filter((question) => question.type === "special")[0];
-  return shuffle([special, ...shuffle(questions.filter((question) => question !== special)).slice(0, 4)]);
+  const composition = questions.find((question) => question.type === "composition");
+  const compoundVowel = questions.find((question) => question.type === "compound-vowel");
+  const remaining = questions.filter((question) => !["special", "composition", "compound-vowel"].includes(question.type));
+  return shuffle([special, composition, compoundVowel, ...shuffle(remaining).slice(0, 2)]);
 }
 
 function answerOptions(question) {
@@ -292,6 +381,10 @@ function answerOptions(question) {
       .filter((value) => value !== question.answer)).slice(0, 3);
     return shuffle([question.answer, ...alternatives]);
   }
+  if (question.type === "composition") {
+    return shuffle(["ㄱ + ㅏ + ㄱ", "ㄱ + ㅏ", "ㄴ + ㅏ + ㄴ", "ㅇ + ㅏ + ㄱ"]);
+  }
+  if (question.type === "compound-vowel") return shuffle(["ㅘ", "ㅗ", "ㅝ", "ㅙ"]);
   return shuffle([question.answer, ...vowels.filter((item) => item.letter !== question.answer).slice(0, 3).map((item) => item.letter)]);
 }
 

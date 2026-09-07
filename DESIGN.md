@@ -79,7 +79,7 @@ The primary stack is `"Noto Sans KR", "Apple SD Gothic Neo", "PingFang SC", "Mic
 The header and every major section sit in a centered 1180px maximum-width column. Mobile uses `calc(100% - 2rem)` horizontal space; from 760px upward it uses `calc(100% - 4rem)`. The mobile reading order is header, introduction and builder, letters, speaking practice, then quiz.
 
 - The introductory spread is a single-column grid with 2rem gaps and generous vertical paper margins. At 760px it becomes a `0.9fr / 1.1fr` two-column layout, vertically centered with a 39rem minimum height.
-- The builder’s selectors stack on small screens and become `1.35fr / 1fr` at 760px.
+- The builder’s three selectors stack on small screens and become `1.35fr / 1fr / 0.75fr` at 760px.
 - Letter groups stack by default and become `1.6fr / 1fr` at 760px. Consonants use five columns; vowels use three columns on desktop. All letter grids reduce to four columns at 440px and below.
 - Practice and quiz each stack on mobile and become a `0.75fr / 1.25fr` lead-and-note layout at 760px.
 - Below 440px, the header top-aligns; the brand is constrained to 11rem and the section heading stacks above its progress panel.
@@ -96,15 +96,15 @@ All controls are square-cornered with 1px `currentColor` borders. Shadows are ha
 
 ### Syllable builder
 
-The “拼读小桌” is the primary learning surface. Semantic fieldsets separate all 19 modern Hangul onset consonants and 6 first-lesson vowels; compact Korean-letter buttons expose `aria-pressed` and turn amber when hovered or selected. Selecting any pair computes a real Hangul syllable from its Unicode initial and vowel indices. The output shows the large syllable block, romanization (including `ㅅ + ㅣ → shi`), a Chinese approximation, and a polite live selection status.
+The “拼读小桌” is the primary learning surface. Semantic fieldsets separate all 19 modern Hangul onset consonants, all 21 modern vowels, and an optional final-consonant set of seven beginner representatives. Compact Korean-letter buttons expose `aria-pressed` and turn amber when hovered or selected. Selecting any set computes a real precomposed Hangul syllable with `0xAC00 + ((initial * 21 + vowel) * 28) + final`. The output shows the large syllable block, romanization, selected final, a cautious approximation, and a polite live selection status. The data model retains all 28 standard final indices for future expansion; the UI intentionally keeps advanced clusters out of the beginner flow.
 
-The consonant area first shows a compact “字形家族” map: five original paper-strip relationship diagrams present base consonants with their aspirated added-stroke and tense doubled counterparts. Visible copy treats romanization as an entry-level cue, identifies `ㄱ` as one base letter with contextual g/k notation, and says aspiration and tense are neither exact Chinese/English sounds nor repeated reading. The 14 base cards and 5 tense cards remain separate below the map.
+The consonant area first shows a compact “字形家族” map: base-to-aspirated relations are `ㄱ → ㅋ`, `ㄷ → ㅌ`, `ㅂ → ㅍ`, and `ㅅ → ㅈ → ㅊ`; modern doubled forms `ㄲ、ㄸ、ㅃ、ㅆ、ㅉ` are separately marked as tense. The adjacent “解例的设计地图” uses original, decorative mouth-position sketches for `ㄱ、ㄴ、ㅁ、ㅅ、ㅇ` and distinguishes real articulatory cues from the lower “字形和声音小贴士” mnemonics. Visible copy treats romanization as an entry-level cue and says aspiration and tense are neither exact Chinese/English sounds nor repeated reading.
 
 When the combination changes, the two output values receive a 430ms `note-change` treatment: a subtle brightness lift, `-1.5deg` rotation, and small upward translation settle back to rest with `cubic-bezier(0.2, 0.85, 0.24, 1)`.
 
 ### Letter cards and progress
 
-Each of the 25 letter cards is a left-aligned pale-paper button with a large Korean glyph, a romanization cue, and a concise Chinese hint. Cards use 0.7rem padding, a 3px hard muted shadow, and a small hover lift; they do not imply navigation. Pressing a card toggles its learned state, changes it to mint, updates `aria-pressed` and its spoken label, persists the letter set in `localStorage`, and updates the header count and native progress element. Resetting progress requires confirmation and announces the result through a polite live region.
+Each of the 40 letter cards is a left-aligned pale-paper button with a large Korean glyph, a visibly marked approximate romanization cue, and a concise articulation, shape, or mouth-action hint. Vowels are organized as ten modern base vowels and eleven combined/diphthong vowels, with the historical heaven `ㆍ`, earth `ㅡ`, person `ㅣ` design logic stated as context rather than a modern pronunciation rule. Cards use 0.7rem padding, a 3px hard muted shadow, and a small hover lift; they do not imply navigation. Pressing a card toggles its learned state, changes it to mint, updates `aria-pressed` and its spoken label, persists the letter set in `localStorage`, and updates the header count and native progress element. Resetting progress requires confirmation and announces the result through a polite live region.
 
 The post-card “字形和声音小贴士” strip uses nine original inline SVG pencil-line sketches plus concise Chinese shape-and-onset mnemonics. The SVGs are decorative (`aria-hidden`); adjacent visible copy supplies the meaning and labels the ideas as memory aids rather than precise pronunciation rules. The grid is two columns on compact screens and three columns from 760px upward.
 

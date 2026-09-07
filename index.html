@@ -24,7 +24,7 @@
       </div>
       <div class="header-progress" aria-label="学习进度">
         <span class="signal-dot" aria-hidden="true"></span>
-        <span id="header-progress">已学 0 / 16</span>
+        <span id="header-progress">已学 0 / 40</span>
       </div>
     </header>
 
@@ -33,17 +33,17 @@
         <div class="intro-copy">
           <h1 id="page-title">先把一块韩文<br />拼出来。</h1>
           <p>
-            韩文不是按一条线写的字母串。一个基本音节块通常由<strong>辅音 + 元音</strong>组成，例如
-            <span lang="ko">ㄱ + ㅏ = 가</span>。这一页是第一课：先认识 19 个起首辅音和 6 个基础元音，再看它们拼成一个完整音节。
+            韩文不是按一条线写的字母串。一个音节块由<strong>初声 + 元音 +（可选）收音</strong>组成，例如
+            <span lang="ko">ㄱ + ㅏ = 가</span>，或 <span lang="ko">ㄱ + ㅏ + ㄱ = 각</span>。本页先练现代 19 个初声与 21 个元音的拼写组合。
           </p>
-          <p class="hand-note">不用急着像中文拼音那样读准，先看见它们如何合在一起。</p>
+          <p class="hand-note">先看三块怎样合成一个字；收音读法常会变化，这一页先练拼写组合和听音。</p>
           <a class="text-link" href="#letters">先认识字母 <span aria-hidden="true">↓</span></a>
         </div>
 
         <section class="syllable-note" aria-labelledby="builder-title">
           <div class="note-title-row">
             <h2 id="builder-title">拼读小桌</h2>
-            <p id="selection-status" aria-live="polite">已选：ㄱ 与 ㅏ</p>
+            <p id="selection-status" aria-live="polite">已选：ㄱ、ㅏ、无收音</p>
           </div>
           <div class="syllable-sheet" aria-label="当前组合音节">
             <div class="syllable-cell syllable-main">
@@ -54,9 +54,13 @@
               <span class="sheet-label">罗马音</span>
               <output id="romanization">ga</output>
             </div>
+            <div class="syllable-cell final-cell">
+              <span class="sheet-label">收音</span>
+              <output id="final-consonant" lang="ko">无</output>
+            </div>
           </div>
           <p class="pronunciation-note" id="pronunciation-tip">
-            <strong>中文提示：</strong>接近“嘎”的起音，但不是完全相同。
+            <strong>近似提示：</strong>接近“嘎”的起音，但不是完全相同。
           </p>
           <div class="selector-grid">
             <fieldset class="selector-field">
@@ -67,6 +71,10 @@
               <legend>元音</legend>
               <div id="vowel-selector" class="selector-options"></div>
             </fieldset>
+            <fieldset class="selector-field">
+              <legend>收音（可选）</legend>
+              <div id="final-selector" class="selector-options"></div>
+            </fieldset>
           </div>
         </section>
       </section>
@@ -75,11 +83,11 @@
         <div class="section-heading">
           <div>
             <h2 id="letters-title">认字母，不急着背。</h2>
-            <p>点击字母便签记为“已学会”。中文提示只是找感觉，不等于完全相同的中文音。</p>
+            <p>点击字母便签记为“已学会”。中文提示只是找感觉，不等于完全相同的中文音；收音先看拼写，实际读法会随词变化。</p>
           </div>
           <div class="progress-panel">
-            <span id="progress-count">0 / 16</span>
-            <progress id="learning-progress" value="0" max="16">0%</progress>
+            <span id="progress-count">0 / 40</span>
+            <progress id="learning-progress" value="0" max="40">0%</progress>
             <button class="quiet-button" id="reset-progress" type="button">重置学习进度</button>
           </div>
         </div>
@@ -87,26 +95,56 @@
         <section class="family-strip" aria-labelledby="family-title">
           <div class="family-heading">
             <h3 id="family-title">字形家族</h3>
-            <p>基础字 → 加一笔变送气 → 加重变紧音</p>
+            <p>基础字 → 加笔变送气；双写是现代紧音</p>
           </div>
-          <p class="family-intro"><span lang="ko">ㄱ</span> 是一个基础字母，入门罗马音可提示 g/k；送气与紧音只是帮助入门的分类，不等于英语或汉语的完全相同音，更不是重复读。</p>
+          <p class="family-intro">这是《训民正音解例》的字形设计思路的入门摘要：<span lang="ko">ㄱ</span> 是一个基础字母，入门罗马音可提示 g/k；送气与现代紧音不等于英语或汉语的完全相同音，更不是重复读。</p>
           <ul class="family-list">
             <li aria-label="ㄱ 基础字母，变为 ㅋ 送气 k，再变为 ㄲ 紧音 g/k">
-              <span lang="ko">ㄱ</span><b>基础 g/k</b><i aria-hidden="true">→</i><span lang="ko">ㅋ</span><b>加一笔：送气 k</b><i aria-hidden="true">→</i><span lang="ko">ㄲ</span><b>加重：紧音 g/k</b>
+              <span lang="ko">ㄱ</span><b>基础 g/k</b><i aria-hidden="true">→</i><span lang="ko">ㅋ</span><b>加笔：送气 k</b><i aria-hidden="true">→</i><span lang="ko">ㄲ</span><b>现代紧音</b>
             </li>
             <li aria-label="ㄷ 基础字母，变为 ㅌ 送气 t，再变为 ㄸ 紧音 d/t">
-              <span lang="ko">ㄷ</span><b>基础 d/t</b><i aria-hidden="true">→</i><span lang="ko">ㅌ</span><b>加一笔：送气 t</b><i aria-hidden="true">→</i><span lang="ko">ㄸ</span><b>加重：紧音 d/t</b>
+              <span lang="ko">ㄷ</span><b>基础 d/t</b><i aria-hidden="true">→</i><span lang="ko">ㅌ</span><b>加笔：送气 t</b><i aria-hidden="true">→</i><span lang="ko">ㄸ</span><b>现代紧音</b>
             </li>
             <li aria-label="ㅂ 基础字母，变为 ㅍ 送气 p，再变为 ㅃ 紧音 b/p">
-              <span lang="ko">ㅂ</span><b>基础 b/p</b><i aria-hidden="true">→</i><span lang="ko">ㅍ</span><b>加一笔：送气 p</b><i aria-hidden="true">→</i><span lang="ko">ㅃ</span><b>加重：紧音 b/p</b>
+              <span lang="ko">ㅂ</span><b>基础 b/p</b><i aria-hidden="true">→</i><span lang="ko">ㅍ</span><b>加笔：送气 p</b><i aria-hidden="true">→</i><span lang="ko">ㅃ</span><b>现代紧音</b>
             </li>
-            <li aria-label="ㅈ 基础字母，变为 ㅊ 送气 ch，再变为 ㅉ 紧音 j">
-              <span lang="ko">ㅈ</span><b>基础 j</b><i aria-hidden="true">→</i><span lang="ko">ㅊ</span><b>加一笔：送气 ch</b><i aria-hidden="true">→</i><span lang="ko">ㅉ</span><b>加重：紧音 j</b>
+            <li aria-label="ㅅ 基础字母，派生为 ㅈ，再加笔为 ㅊ；ㅉ 是现代紧音">
+              <span lang="ko">ㅅ</span><b>基础 s</b><i aria-hidden="true">→</i><span lang="ko">ㅈ</span><b>加笔：近似 j</b><i aria-hidden="true">→</i><span lang="ko">ㅊ</span><b>再加笔：送气 ch</b>
             </li>
-            <li aria-label="ㅅ 基础字母，变为 ㅆ 紧音 s">
-              <span lang="ko">ㅅ</span><b>基础 s</b><i aria-hidden="true">→</i><span lang="ko">ㅆ</span><b>加重：紧音 s</b>
+            <li aria-label="现代紧音形式为 ㄲ、ㄸ、ㅃ、ㅆ、ㅉ">
+              <span lang="ko">ㄲ ㄸ ㅃ ㅆ ㅉ</span><b>现代双写紧音：更紧、更短，不是重复读</b>
             </li>
           </ul>
+        </section>
+
+        <section class="design-map" aria-labelledby="design-map-title">
+          <div class="memory-heading">
+            <h3 id="design-map-title">解例的设计地图：先看发音位置</h3>
+            <p>这是真实发音位置的入门提示，不是字形小联想。</p>
+          </div>
+          <p class="design-map-intro">《训民正音解例》以发音器官的形状说明五个基本辅音。先感受口腔的位置，再把罗马音和中文近似当作辅助。</p>
+          <div class="position-grid">
+            <article class="position-note">
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false"><path d="M18 40q20-28 65-20 17 4 22 20-9 22-33 22H35q-12-4-17-22Z" /><path d="M43 47q15-15 38-6" /><circle cx="82" cy="40" r="4" /></svg>
+              <div><strong lang="ko">ㄱ</strong><p>舌根抵住软腭附近的口腔后部。</p></div>
+            </article>
+            <article class="position-note">
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false"><path d="M18 40q20-28 65-20 17 4 22 20-9 22-33 22H35q-12-4-17-22Z" /><path d="M42 49q18-16 35-18" /><path d="M75 28v13" /></svg>
+              <div><strong lang="ko">ㄴ</strong><p>舌尖轻触上齿龈的位置。</p></div>
+            </article>
+            <article class="position-note">
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false"><path d="M28 32q32-17 64 0M28 48q32 17 64 0" /><path d="M38 40h44" /></svg>
+              <div><strong lang="ko">ㅁ</strong><p>双唇合上；声音可从鼻腔出来。</p></div>
+            </article>
+            <article class="position-note">
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false"><path d="M25 27h70M25 39h70" /><path d="m43 56 9-11 9 11 9-11 9 11" /></svg>
+              <div><strong lang="ko">ㅅ</strong><p>气流从牙齿附近穿过。</p></div>
+            </article>
+            <article class="position-note">
+              <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false"><path d="M28 18q-13 23 0 44 12 13 31 6" /><path d="M55 29q18 12 0 27" /><circle cx="57" cy="42" r="5" /></svg>
+              <div><strong lang="ko">ㅇ</strong><p>关联喉咙；但放在初声位置时安静不发音。</p></div>
+            </article>
+          </div>
         </section>
 
         <div class="letter-groups">
@@ -122,8 +160,18 @@
             </section>
           </div>
           <section aria-labelledby="vowels-title">
-            <h3 id="vowels-title">6 个基础元音</h3>
-            <div class="letter-grid vowel-grid" id="vowel-cards"></div>
+            <div class="vowel-study">
+              <section aria-labelledby="vowels-title">
+                <h3 id="vowels-title">10 个基础元音：天·地·人</h3>
+                <p class="vowels-origin">历史设计以天 <span lang="ko">ㆍ</span>、地 <span lang="ko">ㅡ</span>、人 <span lang="ko">ㅣ</span> 为基本符号；<span lang="ko">ㆍ</span> 是现代标准韩语已不用的历史字母。这个思路帮你看字形，实际发音仍要听音练习。</p>
+                <div class="letter-grid vowel-grid" id="base-vowel-cards"></div>
+              </section>
+              <section class="compound-vowels" aria-labelledby="compound-vowels-title">
+                <h3 id="compound-vowels-title">11 个组合/双元音</h3>
+                <p>继续由基础字形组合而来。像 <span lang="ko">ㅐ / ㅔ</span> 的现代实际读音常会接近，初学阶段先按拼写和罗马音区分。</p>
+                <div class="letter-grid vowel-grid" id="compound-vowel-cards"></div>
+              </section>
+            </div>
           </section>
         </div>
         <p class="screen-reader-status" id="progress-status" aria-live="polite"></p>

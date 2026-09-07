@@ -256,7 +256,7 @@ h3 {
 
 .syllable-sheet {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: 1.1fr 1fr 0.8fr;
   border-top: 1px solid var(--line);
   border-left: 1px solid var(--line);
 }
@@ -297,6 +297,11 @@ output {
 #romanization {
   color: var(--amber);
   font-size: clamp(2rem, 9vw, 4rem);
+}
+
+#final-consonant {
+  color: #286144;
+  font-size: clamp(2.2rem, 10vw, 4.4rem);
 }
 
 .note-change {
@@ -506,6 +511,26 @@ progress {
   gap: 2.25rem;
 }
 
+.vowel-study {
+  display: grid;
+  gap: 2.25rem;
+}
+
+.vowels-origin,
+.compound-vowels > p {
+  margin: 0.35rem 0 1rem;
+  color: #594934;
+  font-family: "KaiTi", "STKaiti", cursive;
+  line-height: 1.45;
+}
+
+.vowels-origin [lang="ko"],
+.compound-vowels [lang="ko"] {
+  color: #286144;
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  font-weight: 900;
+}
+
 .tense-consonants {
   position: relative;
   padding-top: 1.25rem;
@@ -599,6 +624,64 @@ progress {
   margin-top: 3.5rem;
   padding-top: 2rem;
   border-top: 1px solid var(--line);
+}
+
+.design-map {
+  margin: 0 0 2.75rem;
+  padding: 1.1rem;
+  border: 1px dashed var(--line);
+  background: #fffaf0;
+}
+
+.design-map-intro {
+  max-width: 72ch;
+  margin: 0 0 1rem;
+  color: #594934;
+  line-height: 1.5;
+}
+
+.position-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.position-note {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: center;
+  padding: 0.65rem;
+  border: 1px solid #d7c5a4;
+  background: #f5e5c4;
+}
+
+.position-note:nth-child(2n) {
+  background: #fffdf7;
+}
+
+.position-note svg {
+  width: 100%;
+  height: auto;
+  stroke: #87580f;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.position-note strong {
+  display: block;
+  color: #286144;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.position-note p {
+  margin: 0.25rem 0 0;
+  color: #564635;
+  font-size: 0.82rem;
+  line-height: 1.4;
 }
 
 .memory-heading {
@@ -872,7 +955,7 @@ footer {
   }
 
   .selector-grid {
-    grid-template-columns: 1.35fr 1fr;
+    grid-template-columns: 1.35fr 1fr 0.75fr;
   }
 
   .letter-groups {
@@ -882,6 +965,15 @@ footer {
 
   .memory-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .position-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .position-note {
+    grid-template-columns: 1fr;
+    align-content: start;
   }
 
   .letter-grid {
@@ -968,6 +1060,10 @@ footer {
 
   .memory-note {
     grid-template-columns: 4rem minmax(0, 1fr);
+  }
+
+  .position-note {
+    grid-template-columns: 3.6rem minmax(0, 1fr);
   }
 
   .letter-grid {
