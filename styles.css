@@ -403,6 +403,85 @@ progress {
   accent-color: var(--focus);
 }
 
+.family-strip {
+  margin: 0 0 2.75rem;
+  padding: 1.1rem;
+  border: 1px dashed var(--line);
+  background: #fffaf0;
+}
+
+.family-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.family-heading h3 {
+  margin-bottom: 0.3rem;
+}
+
+.family-heading p,
+.family-intro {
+  margin-bottom: 0.8rem;
+  color: #594934;
+  font-family: "KaiTi", "STKaiti", cursive;
+  line-height: 1.45;
+}
+
+.family-intro {
+  max-width: 75ch;
+}
+
+.family-intro [lang="ko"] {
+  color: #286144;
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  font-weight: 900;
+}
+
+.family-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.family-list li {
+  display: grid;
+  grid-template-columns: auto minmax(3.9rem, 1fr) auto auto minmax(6rem, 1.2fr) auto auto minmax(6rem, 1.2fr);
+  gap: 0.25rem;
+  align-items: center;
+  padding: 0.55rem;
+  background: #f5e5c4;
+  border: 1px solid #d7c5a4;
+}
+
+.family-list li:last-child {
+  grid-template-columns: auto minmax(3.9rem, 1fr) auto auto minmax(6rem, 1.2fr);
+}
+
+.family-list span {
+  color: #286144;
+  font-size: 1.65rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.family-list b {
+  color: #564635;
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+.family-list i {
+  color: #87580f;
+  font-size: 1.15rem;
+  font-style: normal;
+  font-weight: 900;
+}
+
 .quiet-button {
   width: fit-content;
   padding: 0.55rem 0.7rem;
@@ -420,6 +499,46 @@ progress {
 .letter-groups {
   display: grid;
   gap: 2.6rem;
+}
+
+.consonant-study {
+  display: grid;
+  gap: 2.25rem;
+}
+
+.tense-consonants {
+  position: relative;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.tense-consonants::before {
+  position: absolute;
+  top: -0.45rem;
+  left: 1rem;
+  width: 4.5rem;
+  height: 0.85rem;
+  content: "";
+  background: rgba(229, 182, 80, 0.58);
+  transform: rotate(-2deg);
+}
+
+.tense-consonants h3 {
+  margin-bottom: 0.35rem;
+}
+
+.tense-consonants > p {
+  max-width: 52ch;
+  margin-bottom: 1rem;
+  color: #594934;
+  font-family: "KaiTi", "STKaiti", cursive;
+  line-height: 1.45;
+}
+
+.tense-consonants [lang="ko"] {
+  color: #286144;
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  font-weight: 900;
 }
 
 .letter-grid {
@@ -448,6 +567,10 @@ progress {
   color: #0d3d2c;
   background: var(--mint);
   box-shadow: 3px 3px 0 #397254;
+}
+
+.tense-card {
+  background: #f5e5c4;
 }
 
 .letter-symbol {
@@ -769,6 +892,25 @@ footer {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .tense-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .family-list {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .family-list li,
+  .family-list li:last-child {
+    grid-template-columns: 1fr;
+    justify-items: start;
+    gap: 0.15rem;
+  }
+
+  .family-list i {
+    transform: rotate(90deg);
+  }
+
   .quiz-section {
     grid-template-columns: 0.75fr 1.25fr;
     align-items: start;
@@ -797,6 +939,27 @@ footer {
   .section-heading {
     display: grid;
     align-items: start;
+  }
+
+  .family-heading {
+    display: grid;
+  }
+
+  .family-list {
+    grid-template-columns: 1fr;
+  }
+
+  .family-list li,
+  .family-list li:last-child {
+    grid-template-columns: auto minmax(3.9rem, 1fr) auto auto minmax(6rem, 1.2fr) auto auto minmax(6rem, 1.2fr);
+  }
+
+  .family-list li:last-child {
+    grid-template-columns: auto minmax(3.9rem, 1fr) auto auto minmax(6rem, 1.2fr);
+  }
+
+  .family-list i {
+    transform: none;
   }
 
   .memory-heading {

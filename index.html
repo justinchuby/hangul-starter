@@ -84,13 +84,45 @@
           </div>
         </div>
 
+        <section class="family-strip" aria-labelledby="family-title">
+          <div class="family-heading">
+            <h3 id="family-title">字形家族</h3>
+            <p>基础字 → 加一笔变送气 → 加重变紧音</p>
+          </div>
+          <p class="family-intro"><span lang="ko">ㄱ</span> 是一个基础字母，入门罗马音可提示 g/k；送气与紧音只是帮助入门的分类，不等于英语或汉语的完全相同音，更不是重复读。</p>
+          <ul class="family-list">
+            <li aria-label="ㄱ 基础字母，变为 ㅋ 送气 k，再变为 ㄲ 紧音 g/k">
+              <span lang="ko">ㄱ</span><b>基础 g/k</b><i aria-hidden="true">→</i><span lang="ko">ㅋ</span><b>加一笔：送气 k</b><i aria-hidden="true">→</i><span lang="ko">ㄲ</span><b>加重：紧音 g/k</b>
+            </li>
+            <li aria-label="ㄷ 基础字母，变为 ㅌ 送气 t，再变为 ㄸ 紧音 d/t">
+              <span lang="ko">ㄷ</span><b>基础 d/t</b><i aria-hidden="true">→</i><span lang="ko">ㅌ</span><b>加一笔：送气 t</b><i aria-hidden="true">→</i><span lang="ko">ㄸ</span><b>加重：紧音 d/t</b>
+            </li>
+            <li aria-label="ㅂ 基础字母，变为 ㅍ 送气 p，再变为 ㅃ 紧音 b/p">
+              <span lang="ko">ㅂ</span><b>基础 b/p</b><i aria-hidden="true">→</i><span lang="ko">ㅍ</span><b>加一笔：送气 p</b><i aria-hidden="true">→</i><span lang="ko">ㅃ</span><b>加重：紧音 b/p</b>
+            </li>
+            <li aria-label="ㅈ 基础字母，变为 ㅊ 送气 ch，再变为 ㅉ 紧音 j">
+              <span lang="ko">ㅈ</span><b>基础 j</b><i aria-hidden="true">→</i><span lang="ko">ㅊ</span><b>加一笔：送气 ch</b><i aria-hidden="true">→</i><span lang="ko">ㅉ</span><b>加重：紧音 j</b>
+            </li>
+            <li aria-label="ㅅ 基础字母，变为 ㅆ 紧音 s">
+              <span lang="ko">ㅅ</span><b>基础 s</b><i aria-hidden="true">→</i><span lang="ko">ㅆ</span><b>加重：紧音 s</b>
+            </li>
+          </ul>
+        </section>
+
         <div class="letter-groups">
-          <section aria-labelledby="consonants-title">
-            <h3 id="consonants-title">核心辅音</h3>
-            <div class="letter-grid" id="consonant-cards"></div>
-          </section>
+          <div class="consonant-study">
+            <section aria-labelledby="consonants-title">
+              <h3 id="consonants-title">14 个基础辅音</h3>
+              <div class="letter-grid" id="base-consonant-cards"></div>
+            </section>
+            <section class="tense-consonants" aria-labelledby="tense-consonants-title">
+              <h3 id="tense-consonants-title">5 个双写紧音</h3>
+              <p>由基础字形加重而来：发音更紧、更短促，不是把同一个音念两次。比如 <span lang="ko">ㅅ → ㅆ</span>。</p>
+              <div class="letter-grid tense-grid" id="tense-consonant-cards"></div>
+            </section>
+          </div>
           <section aria-labelledby="vowels-title">
-            <h3 id="vowels-title">核心元音</h3>
+            <h3 id="vowels-title">6 个基础元音</h3>
             <div class="letter-grid vowel-grid" id="vowel-cards"></div>
           </section>
         </div>
@@ -98,63 +130,63 @@
 
         <section class="memory-section" aria-labelledby="memory-title">
           <div class="memory-heading">
-            <h3 id="memory-title">字形小贴士</h3>
-            <p>这些是记字形的小联想，不是标准发音规则。</p>
+            <h3 id="memory-title">字形和声音小贴士</h3>
+            <p>用小联想帮忙记形和起音，不是精确的发音规则。</p>
           </div>
           <div class="memory-grid">
             <article class="memory-note">
               <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false">
                 <path d="M25 58 60 17l35 41M55 52q8 8 16 0" />
               </svg>
-              <div><strong lang="ko">ㅅ</strong><p>像小蛇抬起舌尖，也像一座尖尖的小山。</p></div>
+              <div><strong lang="ko">ㅅ</strong><p>像蛇舌或尖尖的蛇形，联想 s 的起音。</p></div>
             </article>
             <article class="memory-note">
               <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false">
                 <rect x="35" y="12" width="50" height="25" rx="2" /><rect x="35" y="42" width="50" height="25" rx="2" />
               </svg>
-              <div><strong lang="ko">ㅂ</strong><p>像两只叠在一起的小杯子，或两格小盒。</p></div>
+              <div><strong lang="ko">ㅂ</strong><p>像两只叠杯或小杯格；想“杯”b，记 b/p 的起音。</p></div>
             </article>
             <article class="memory-note">
               <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false">
                 <path d="M40 18v44h42M41 18c21 0 34 10 35 27" /><circle cx="78" cy="35" r="2" />
               </svg>
-              <div><strong lang="ko">ㄴ</strong><p>像侧过来的小鼻子，也可联想 Nose 的 N。</p></div>
+              <div><strong lang="ko">ㄴ</strong><p>像侧过来的鼻子，联想 Nose 的 N 和 n 的起音。</p></div>
             </article>
             <article class="memory-note">
               <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false">
                 <rect x="35" y="15" width="50" height="50" rx="1" /><path d="M60 15v50M35 40h50" />
               </svg>
-              <div><strong lang="ko">ㅁ</strong><p>像一扇方方的小窗，也像张开的小口。</p></div>
+              <div><strong lang="ko">ㅁ</strong><p>像方方的小口或窗格；合上嘴唇，联想 m。</p></div>
             </article>
             <article class="memory-note">
               <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false">
                 <circle cx="60" cy="40" r="24" /><circle cx="48" cy="33" r="2" /><circle cx="72" cy="33" r="2" />
               </svg>
-              <div><strong lang="ko">ㅇ</strong><p>像安静冒出的圆气泡；开头时也安静不发音。</p></div>
+              <div><strong lang="ko">ㅇ</strong><p>像圆形气泡；放在初声位置时安静不发音。</p></div>
             </article>
             <article class="memory-note">
               <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false">
                 <path d="M32 25h56M60 25v16M34 45h52M60 45v20" /><path d="M48 64q12 10 24 0" />
               </svg>
-              <div><strong lang="ko">ㅎ</strong><p>像戴着横线小帽、露出笑意的小脸。</p></div>
+              <div><strong lang="ko">ㅎ</strong><p>像带横线小帽的笑脸；轻呼“哈”，联想 h。</p></div>
             </article>
             <article class="memory-note">
               <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false">
                 <path d="M36 18v45h49" /><path d="m81 62-9-8m9 8-9 8" />
               </svg>
-              <div><strong lang="ko">ㄱ</strong><p>像走到直角处要转弯的小路。</p></div>
+              <div><strong lang="ko">ㄱ</strong><p>像直角拐弯；联想 g/k 的短促起音。</p></div>
             </article>
             <article class="memory-note">
               <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false">
                 <path d="M30 18h45v15H44v15h31v15H30" /><path d="m79 17 9 7-9 7" />
               </svg>
-              <div><strong lang="ko">ㄹ</strong><p>像一条折来折去、慢慢往前的小路。</p></div>
+              <div><strong lang="ko">ㄹ</strong><p>像折来折去的小路；联想轻弹一下的 r。</p></div>
             </article>
             <article class="memory-note">
               <svg viewBox="0 0 120 80" aria-hidden="true" focusable="false">
                 <path d="M31 23h58M60 23v13M40 43h40M60 43v21" /><path d="M37 18q23-12 46 0" />
               </svg>
-              <div><strong lang="ko">ㅈ</strong><p>像帽檐下撑起的一副小支架。</p></div>
+              <div><strong lang="ko">ㅈ</strong><p>像帽檐下的小支架；联想 j 的起音。</p></div>
             </article>
           </div>
         </section>

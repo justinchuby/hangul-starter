@@ -20,7 +20,8 @@ python3 -m http.server 8000
 
 - 核心辅音、元音学习卡；点击即可标记“已学会”
 - 第一课覆盖现代韩语全部 19 个初声和 6 个基础元音；双写辅音以“紧音”说明，不按普通重复读处理
-- 原创内联字形小贴士，以手账线条插画和中文短句帮助记住常见字形；仅作形状联想，不表示标准发音规则
+- “字形家族”带将 ㄱ/ㄷ/ㅂ/ㅈ/ㅅ 与相应的送气、紧音字形并列展示；这是谨慎的入门联想，不将罗马音提示当作完整发音等式
+- 原创内联字形和声音小贴士，以手账线条插画和中文短句帮助记住常见字形与谨慎的起音联想；仅作辅助记忆，不表示精确发音规则
 - 选择辅音和元音，即时生成真实的韩文音节块、罗马音和中文近似提示
 - 浏览器内的韩语跟读检测：显示基础音节，使用 Web Speech API 的 `ko-KR` 识别作宽松匹配，并提供不使用语音的替代练习
 - 五题随机小测，逐题反馈和计分
@@ -36,3 +37,5 @@ python3 -m http.server 8000
 ## GitHub Pages
 
 仓库已包含 GitHub Actions 工作流。推送到 `justinchuby-hangul-learning-page` 分支会将仓库根目录的静态文件部署到 GitHub Pages；也可在 Actions 页面手动运行 **Deploy GitHub Pages**。预期访问地址为 <https://justinchuby.github.io/hangul-starter/>。
+
+部署作业使用 GitHub 官方的 `github-pages` 环境。若该环境配置了部署分支限制，请在 **Settings → Environments → github-pages → Deployment branches** 中允许 `justinchuby-hangul-learning-page`（或调整为项目所需策略）；否则 GitHub 会在运行任何工作流步骤前拒绝部署。

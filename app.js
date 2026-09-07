@@ -29,6 +29,9 @@ const vowels = [
   { letter: "ㅣ", roman: "i", hint: "接近“衣”" },
 ];
 
+const tenseConsonantLetters = new Set(["ㄲ", "ㄸ", "ㅃ", "ㅆ", "ㅉ"]);
+const baseConsonants = consonants.filter((item) => !tenseConsonantLetters.has(item.letter));
+const tenseConsonants = consonants.filter((item) => tenseConsonantLetters.has(item.letter));
 const syllableBase = 0xac00;
 const learnedStorageKey = "hangul-starter-learned";
 const hangulInitialIndexes = {
@@ -60,7 +63,8 @@ const hangulVowelIndexes = {
   "ㅡ": 18,
   "ㅣ": 20,
 };
-const consonantCards = document.querySelector("#consonant-cards");
+const baseConsonantCards = document.querySelector("#base-consonant-cards");
+const tenseConsonantCards = document.querySelector("#tense-consonant-cards");
 const vowelCards = document.querySelector("#vowel-cards");
 const consonantSelector = document.querySelector("#consonant-selector");
 const vowelSelector = document.querySelector("#vowel-selector");
@@ -154,7 +158,7 @@ function buildLetterCard(item, type) {
   const card = document.createElement("button");
   const isLearned = learnedLetters.has(item.letter);
   card.type = "button";
-  card.className = "letter-card";
+  card.className = type === "tense" ? "letter-card tense-card" : "letter-card";
   card.dataset.letter = item.letter;
   card.setAttribute("aria-pressed", String(isLearned));
   card.setAttribute("aria-label", `${item.letter}，${item.roman || "音节开头不发音"}。${isLearned ? "已学会" : "标记为已学会"}`);
@@ -170,7 +174,8 @@ function buildLetterCard(item, type) {
 }
 
 function renderLetterCards() {
-  consonantCards.replaceChildren(...consonants.map((item) => buildLetterCard(item, "consonant")));
+  baseConsonantCards.replaceChildren(...baseConsonants.map((item) => buildLetterCard(item, "consonant")));
+  tenseConsonantCards.replaceChildren(...tenseConsonants.map((item) => buildLetterCard(item, "tense")));
   vowelCards.replaceChildren(...vowels.map((item) => buildLetterCard(item, "vowel")));
 }
 

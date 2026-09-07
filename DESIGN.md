@@ -98,13 +98,15 @@ All controls are square-cornered with 1px `currentColor` borders. Shadows are ha
 
 The “拼读小桌” is the primary learning surface. Semantic fieldsets separate all 19 modern Hangul onset consonants and 6 first-lesson vowels; compact Korean-letter buttons expose `aria-pressed` and turn amber when hovered or selected. Selecting any pair computes a real Hangul syllable from its Unicode initial and vowel indices. The output shows the large syllable block, romanization (including `ㅅ + ㅣ → shi`), a Chinese approximation, and a polite live selection status.
 
+The consonant area first shows a compact “字形家族” map: five original paper-strip relationship diagrams present base consonants with their aspirated added-stroke and tense doubled counterparts. Visible copy treats romanization as an entry-level cue, identifies `ㄱ` as one base letter with contextual g/k notation, and says aspiration and tense are neither exact Chinese/English sounds nor repeated reading. The 14 base cards and 5 tense cards remain separate below the map.
+
 When the combination changes, the two output values receive a 430ms `note-change` treatment: a subtle brightness lift, `-1.5deg` rotation, and small upward translation settle back to rest with `cubic-bezier(0.2, 0.85, 0.24, 1)`.
 
 ### Letter cards and progress
 
 Each of the 25 letter cards is a left-aligned pale-paper button with a large Korean glyph, a romanization cue, and a concise Chinese hint. Cards use 0.7rem padding, a 3px hard muted shadow, and a small hover lift; they do not imply navigation. Pressing a card toggles its learned state, changes it to mint, updates `aria-pressed` and its spoken label, persists the letter set in `localStorage`, and updates the header count and native progress element. Resetting progress requires confirmation and announces the result through a polite live region.
 
-The post-card “字形小贴士” strip uses nine original inline SVG pencil-line sketches plus concise Chinese shape mnemonics. The SVGs are decorative (`aria-hidden`); the adjacent visible copy supplies their meaning and states that the ideas are not pronunciation rules. The grid is two columns on compact screens and three columns from 760px upward.
+The post-card “字形和声音小贴士” strip uses nine original inline SVG pencil-line sketches plus concise Chinese shape-and-onset mnemonics. The SVGs are decorative (`aria-hidden`); adjacent visible copy supplies the meaning and labels the ideas as memory aids rather than precise pronunciation rules. The grid is two columns on compact screens and three columns from 760px upward.
 
 ### Speaking practice
 
