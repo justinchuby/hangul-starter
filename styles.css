@@ -497,6 +497,10 @@ progress {
   grid-template-columns: auto minmax(3.9rem, 1fr) auto auto minmax(6rem, 1.2fr);
 }
 
+.family-list .tense-family {
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
 .family-list span {
   color: #286144;
   font-size: 1.65rem;
@@ -628,16 +632,29 @@ progress {
   background: #f5e5c4;
 }
 
-.learn-letter {
+.letter-playback {
   display: grid;
   width: 100%;
   min-height: 6.9rem;
-  padding: 0.7rem 0.7rem 0.35rem;
+  padding: 0.7rem;
   align-content: space-between;
   border: 0;
   color: inherit;
   background: transparent;
   text-align: left;
+}
+
+.letter-playback:hover:not(:disabled) {
+  background: #f5e5c4;
+}
+
+.letter-playback:active:not(:disabled) {
+  background: var(--amber);
+}
+
+.letter-playback:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .letter-symbol {
@@ -657,13 +674,12 @@ progress {
   font-size: 0.88rem;
 }
 
-.letter-sound-button {
+.learn-button {
   display: inline-flex;
-  gap: 0.25rem;
   align-items: center;
   justify-content: center;
   min-height: 2.75rem;
-  margin: 0 0.55rem 0.25rem;
+  margin: 0 0.55rem 0.55rem;
   padding: 0.25rem 0.35rem;
   border: 1px solid currentColor;
   color: #286144;
@@ -672,19 +688,19 @@ progress {
   font-weight: 850;
 }
 
-.letter-sound-button:hover:not(:disabled) {
+.learn-button:hover {
   color: var(--ink);
   background: var(--amber);
 }
 
-.letter-sound-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.learn-button[aria-pressed="true"] {
+  color: #0d3d2c;
+  background: var(--mint);
 }
 
 .letter-example-note {
   min-height: 2.55em;
-  padding: 0 0.7rem 0.6rem;
+  padding: 0.45rem 0 0;
   color: #594934;
   font-size: 0.68rem;
   line-height: 1.3;

@@ -225,20 +225,18 @@ function buildLetterCard(item, type) {
     ? "前置 ㅇ 在开头无声，所以听到的是元音"
     : "用 ㅡ 垫出的示例音，不是孤立辅音的唯一读法";
   card.innerHTML = `
-    <button class="learn-letter" type="button" aria-pressed="${isLearned}" aria-label="${item.letter}，${item.roman || "音节开头不发音"}。${isLearned ? "已学会" : "标记为已学会"}">
+    <button class="letter-playback" type="button" aria-label="播放 ${item.letter} 的示例音 ${example}">
       <span class="letter-symbol" lang="ko">${item.letter}</span>
       <span class="letter-meta">
         <b>近似：${item.roman || "起首无声"}</b>
         <span>${item.hint}</span>
       </span>
+      <span class="letter-example-note">${exampleExplanation}</span>
     </button>
-    <button class="letter-sound-button" type="button" aria-label="听 ${item.letter} 的示例音 ${example}">
-      <span aria-hidden="true">◖</span> 听 <span lang="ko">${example}</span>
-    </button>
-    <span class="letter-example-note">${exampleExplanation}</span>
+    <button class="learn-button" type="button" aria-pressed="${isLearned}" aria-label="${item.letter}，${isLearned ? "取消已学会标记" : "标为已学会"}">${isLearned ? "已学会 · 取消" : "标为已学会"}</button>
   `;
-  card.querySelector(".learn-letter").addEventListener("click", () => toggleLearned(item.letter));
-  card.querySelector(".letter-sound-button").addEventListener("click", () => {
+  card.querySelector(".learn-button").addEventListener("click", () => toggleLearned(item.letter));
+  card.querySelector(".letter-playback").addEventListener("click", () => {
     speakKorean(example, `${item.letter} 的示例音“${example}”`);
   });
   return card;
@@ -680,7 +678,7 @@ function updateSpeechSynthesisSupport() {
       ? "已找到韩语朗读声音。朗读由你的浏览器和设备处理。"
       : "当前设备没有可用的韩语朗读声音。请看着示例音节默读三遍。";
   playPronunciationButton.disabled = !koreanVoice;
-  document.querySelectorAll(".letter-sound-button").forEach((button) => {
+  document.querySelectorAll(".letter-playback").forEach((button) => {
     button.disabled = !koreanVoice;
   });
   setSpeechSynthesisStatus(message);
